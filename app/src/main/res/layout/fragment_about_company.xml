@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.fragments.AboutCompanyFragment">
+
+    <include
+        android:id="@+id/include_tab"
+        layout="@layout/header_menu"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:maxLines="1"
+                android:text="شركة بلاتين للإسيتراد والتصدير"
+                android:textColor="@color/blue"
+                android:textFontWeight="400"
+                android:textSize="24sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="35dp"
+                android:gravity="center"
+                android:text="شركة بلاتين للاستيراد والتصدير ذ.م.م هي شركة رائدة في مجال خدمات الإستيراد والتصدير والإنتاج والتجارة
+وحلول النقل والشحن البري و الجوي و البحري والشحن السريع وسلاسل التوريد"
+                android:textColor="@color/gray"
+                android:textFontWeight="400"
+                android:textSize="18sp"
+                />
+
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="340dp"
+                android:layout_height="160dp"
+                android:layout_marginVertical="20dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:src="@drawable/truck" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="تاريخنـــــا"
+                android:textColor="@color/blue"
+                android:textFontWeight="400"
+                android:textSize="25sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="35dp"
+                android:gravity="center"
+                android:text="نحن نقدم لعملائنا أعلى مستويات الجودة والدقة في النقل والخدمات اللوجستية وحلول النقل , وقد تمكنت المؤسسة من خلال عمرها القصير من حجز مساحة خاصة بها بين كبرى الشركات العاملة فى "
+                android:textColor="@color/gray"
+                android:textFontWeight="400"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="35dp"
+                android:gravity="center"
+                android:text="نفس المجال، كما و تعتمد المؤسسة على التطوير المستمر والإبتكار وذلك بالاعتماد على فريق العمل ذو الخبرة الواسعة في مجال الاستيراد والتصدير, الشحن والتخليص والخدمات اللوجستية."
+                android:textColor="@color/gray"
+                android:textFontWeight="400"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="35dp"
+                android:gravity="center"
+                android:text="وعندما يتعلق الأمر بالإستيراد والتصدير ، فإن لدينا نظرة مستقبلية طويلة الأجل , حريصون على جودة الأداء ومتابعة النمو , نسير بخطا ثابتة ورؤية طموحة ، نحن بكل فخر نقدم خدماتنا لشريحة واسعة من العملاء ولإننا نهتم فإننا نتابع معك باستمرار , وكلما تنمو أعمالك نحن ننمو معك .نحن نصغى لك , ونسمع منك , ونقترح عليك .."
+                android:textColor="@color/gray"
+                android:textFontWeight="400"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:layout_marginTop="20dp"
+                android:text="ما يمر بنا"
+                android:textColor="@color/blue"
+                android:textFontWeight="400"
+                android:textSize="25sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="35dp"
+                android:gravity="center"
+                android:layout_marginBottom="60dp"
+                android:text="هدف الشركة ليس فقط أن تكون شركة رائدة فى مجال الإستيراد والتصدير ؛إنما نسعى لتوسيع آفاقها وتوفير خدمة ممتازة من الطراز العالمي , وأن نوفر أعلى معايير الجودة وأفضل الحلول المبتكرة لجميع العملاء"
+                android:textColor="@color/gray"
+                android:textFontWeight="400"
+                android:textSize="18sp"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

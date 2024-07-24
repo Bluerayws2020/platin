@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_back2"
+    tools:context=".ui.activities.LoginActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/login_back"
+        tools:layout_editor_absoluteX="-57dp"
+        tools:layout_editor_absoluteY="-361dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="تسجيل الدخول"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textFontWeight="400"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="إذا كان لديك حساب معنا، يرجى تسجيل الدخول"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textFontWeight="400"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:drawablePadding="10dp"
+                android:drawableTint="#BBBBBB"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/edit_text_bg"
+                android:hint="ادخل رقم الهاتف / البريد الإلكتروني"
+                android:padding="10dp"
+                android:textColor="@color/gray"
+                android:textSize="14dp" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:drawablePadding="10dp"
+                android:drawableTint="#BBBBBB"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edit_text_bg"
+                android:hint="كلمة المرور"
+                android:padding="10dp"
+                android:textColor="@color/gray"
+                android:textSize="14dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/forgotPasswordTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:text="هل نسيت كلمة المرور؟"
+                    android:textAlignment="textEnd"
+                    android:textSize="14sp"
+                    android:textFontWeight="400"
+                    android:textColor="@color/white"
+                     />
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="تذكرني"
+                    android:textAlignment="textEnd"
+                    android:textSize="14sp"
+                    android:textFontWeight="400"
+                    android:textColor="@color/white"
+                    />
+
+                <CheckBox
+                    android:id="@+id/rememberMeCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="-15dp"
+                    android:buttonTint="@color/white"
+                    />
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/loginButton"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:backgroundTint="@color/orange"
+                android:text="تسجيل الدخول"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textFontWeight="400" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/signUp"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/white"
+                android:text="انشاء حساب"
+                android:textColor="@color/blue"
+                android:textSize="17sp"
+                android:textFontWeight="400" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

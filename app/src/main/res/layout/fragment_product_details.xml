@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.fragments.ProductDetailsFragment">
+
+    <include
+        android:id="@+id/include_tab"
+        layout="@layout/header_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/category_name">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/category_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:layout_marginTop="15dp"
+                android:paddingHorizontal="100dp"
+                android:text="Baymax S-1551 Work Safety
+Goggles (Air)-Transparent"
+                android:textColor="@color/black"
+                android:textFontWeight="400"
+                android:textSize="14sp"
+                 />
+
+
+            <com.google.android.material.card.MaterialCardView
+
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                android:layout_margin="20dp"
+                android:elevation="0dp"
+                android:gravity="center"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/gray500"
+                app:strokeWidth="3dp">
+
+                <ImageView
+                    android:id="@+id/product_image"
+                    android:layout_width="220dp"
+                    android:layout_height="170dp"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/p2" />
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="105dp"
+                        android:layout_height="95dp"
+                        android:layout_weight="1"
+                        android:elevation="0dp"
+                        android:gravity="center"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="@color/gray500"
+                        app:strokeWidth="2dp">
+
+                        <ImageView
+                            android:id="@+id/image1"
+                            android:layout_width="95dp"
+                            android:layout_height="70dp"
+                            android:layout_gravity="center"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/p2" />
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="105dp"
+                        android:layout_height="95dp"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_weight="1"
+                        android:elevation="0dp"
+                        android:gravity="center"
+                        app:cardElevation="0dp"
+                        app:cardCornerRadius="16dp"
+                        app:strokeColor="@color/gray500"
+                        app:strokeWidth="2dp">
+
+                        <ImageView
+                            android:id="@+id/image2"
+                            android:layout_width="95dp"
+                            android:layout_height="70dp"
+                            android:layout_gravity="center"
+                            android:adjustViewBounds="true"
+                            android:rotation="270"
+                            android:src="@drawable/p2" />
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="105dp"
+                        android:layout_height="95dp"
+                        android:layout_weight="1"
+                        app:cardElevation="0dp"
+                        android:elevation="0dp"
+                        android:gravity="center"
+                        app:cardCornerRadius="16dp"
+                        app:strokeColor="@color/gray500"
+                        app:strokeWidth="2dp">
+
+                        <ImageView
+                            android:id="@+id/image3"
+                            android:layout_width="95dp"
+                            android:layout_height="70dp"
+                            android:layout_gravity="center"
+                            android:adjustViewBounds="true"
+                            android:rotation="180"
+                            android:src="@drawable/p2" />
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="30dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/materialCardView"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:elevation="0dp"
+                        android:gravity="center"
+                        app:cardBackgroundColor="@color/gray500"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:strokeColor="@color/gray500"
+                        app:strokeWidth="2dp">
+
+                        <ImageView
+                            android:id="@+id/left"
+                            android:layout_width="13dp"
+                            android:layout_height="13dp"
+                            android:layout_gravity="center"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/ic_right" />
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:elevation="0dp"
+                        android:gravity="center"
+                        app:cardBackgroundColor="@color/gray500"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:strokeColor="@color/gray500"
+                        app:strokeWidth="2dp">
+
+                        <ImageView
+                            android:id="@+id/right"
+                            android:layout_width="13dp"
+                            android:layout_height="13dp"
+                            android:layout_gravity="center"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/ic_left" />
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginTop="20dp"
+                android:maxLines="1"
+                android:paddingHorizontal="25dp"
+                android:text="الحجم : "
+                android:textColor="@color/black"
+                android:textFontWeight="400"
+                android:textSize="19sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="2dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/order">
+
+                <Spinner
+                    android:id="@+id/spinner_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:drawablePadding="10dp"
+                    android:drawableTint="#BBBBBB"
+                    android:lines="1"
+                    android:padding="10dp"
+                    android:textColor="@color/gray500"
+                    android:textSize="12sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginTop="20dp"
+                android:maxLines="1"
+                android:paddingHorizontal="25dp"
+                android:text="الكمية : "
+                android:textColor="@color/black"
+                android:textFontWeight="400"
+                android:textSize="19sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="2dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/order">
+
+                <Spinner
+                    android:id="@+id/spinner_qty"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:drawablePadding="10dp"
+                    android:drawableTint="#BBBBBB"
+                    android:lines="1"
+                    android:padding="10dp"
+                    android:textColor="@color/gray500"
+                    android:textSize="12sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginTop="20dp"
+                android:maxLines="1"
+                android:paddingHorizontal="25dp"
+                android:text="السعر : "
+                android:textColor="@color/black"
+                android:textFontWeight="400"
+                android:textSize="19sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:maxLines="1"
+                android:layout_marginHorizontal="25dp"
+                android:paddingHorizontal="25dp"
+                android:text="20 JD"
+                android:textColor="@color/blue"
+                android:textFontWeight="500"
+                android:textSize="19sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addToCartButton"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:backgroundTint="@color/orange"
+                android:text="أضف الى السلة"
+                android:layout_marginHorizontal="25dp"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textFontWeight="400" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginTop="20dp"
+                android:maxLines="1"
+                android:paddingHorizontal="25dp"
+                android:text="تفاصيل المنتج : "
+                android:textColor="@color/black"
+                android:textFontWeight="400"
+                android:textSize="19sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingHorizontal="25dp"
+                android:text="اللون : بني برتقالي WALNUT ANTIQUE OAK BEECH LIGHT بني برتقالي WALNUT ANTIQUE OAK BEECH LIGHTاللون  LIGHT بني برتقالي WALNUT ANTIQUE OAK BEECH LIGHT"
+                android:textColor="@color/gray"
+                android:textFontWeight="400"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginTop="20dp"
+                android:maxLines="1"
+                android:paddingHorizontal="25dp"
+                android:text="قيم المنتج : "
+                android:textColor="@color/black"
+                android:textFontWeight="400"
+                android:textSize="19sp" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="-60dp"
+                android:layout_marginTop="-10dp"
+                android:numStars="5"
+                android:paddingHorizontal="1dp"
+                android:rating="0"
+                android:progressTint="@color/orange"
+                android:scaleX="0.3"
+                android:scaleY="0.3"
+                android:stepSize="1" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sendButton"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:backgroundTint="@color/orange"
+                android:text="ارسل"
+                android:layout_marginHorizontal="25dp"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textFontWeight="400" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginTop="20dp"
+                android:maxLines="1"
+                android:paddingHorizontal="25dp"
+                android:text="منتجات ذاة صلة : "
+                android:textColor="@color/black"
+                android:textFontWeight="400"
+                android:textSize="19sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:paddingHorizontal="5dp"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:spanCount="6"
+                tools:listitem="@layout/item_product" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp"
+                android:background="@color/gray500"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginTop="30dp"
+                    android:maxLines="1"
+                    android:paddingHorizontal="25dp"
+                    android:text="عروض مميزة : "
+                    android:textColor="@color/black"
+                    android:textFontWeight="400"
+                    android:textSize="19sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:paddingHorizontal="5dp"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:spanCount="6"
+                    tools:listitem="@layout/item_product_horizontal" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

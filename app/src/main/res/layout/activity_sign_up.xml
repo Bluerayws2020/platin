@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_back2"
+    tools:context=".ui.activities.SignUpActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/login_back"
+        tools:layout_editor_absoluteX="-57dp"
+        tools:layout_editor_absoluteY="-361dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="انشاء حساب"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textFontWeight="400"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/indevidual"
+                    android:layout_width="85dp"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@color/white"
+                    android:text="فرد"
+                    android:layout_marginHorizontal="5dp"
+                    android:textColor="@color/blue"
+                    android:textSize="18sp"
+                    app:cornerRadius="40dp"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@color/orange"
+                    android:textFontWeight="500" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/commircer"
+                    android:layout_width="85dp"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@color/blue"
+                    android:text="تاجر"
+                    android:layout_marginHorizontal="5dp"
+                    android:textColor="@color/gray"
+                    android:textSize="18sp"
+                    app:cornerRadius="40dp"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@color/gray"
+                    android:textFontWeight="500" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:drawablePadding="10dp"
+                android:drawableTint="#BBBBBB"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edit_text_bg"
+                android:hint="الإسم الكامل"
+                android:padding="10dp"
+                android:textColor="@color/gray"
+                android:textSize="14dp" />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:drawablePadding="10dp"
+                android:drawableTint="#BBBBBB"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edit_text_bg"
+                android:hint="البريد الالكتروني"
+                android:padding="10dp"
+                android:textColor="@color/gray"
+                android:textSize="14dp" />
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:drawablePadding="10dp"
+                android:drawableTint="#BBBBBB"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edit_text_bg"
+                android:hint="رقم الهاتف"
+                android:padding="10dp"
+                android:textColor="@color/gray"
+                android:textSize="14dp" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:drawablePadding="10dp"
+                android:drawableTint="#BBBBBB"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edit_text_bg"
+                android:hint="كلمة المرور"
+                android:padding="10dp"
+                android:textColor="@color/gray"
+                android:textSize="14dp" />
+            <EditText
+                android:id="@+id/conf_password"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:drawablePadding="10dp"
+                android:drawableTint="#BBBBBB"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edit_text_bg"
+                android:hint="تأكيد كلمة المرور"
+                android:padding="10dp"
+                android:textColor="@color/gray"
+                android:textSize="14dp" />
+            <EditText
+                android:id="@+id/commerical_name"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:drawablePadding="10dp"
+                android:drawableTint="#BBBBBB"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                android:background="@drawable/edit_text_bg"
+                android:hint="الإسم التجاري"
+                android:padding="10dp"
+                android:textColor="@color/gray"
+                android:textSize="14dp" />
+            <EditText
+                android:id="@+id/profession_licence"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:drawablePadding="10dp"
+                android:enabled="false"
+                android:visibility="gone"
+                android:drawableTint="#BBBBBB"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edit_text_bg"
+                android:hint="الرقم التجاري"
+                android:padding="10dp"
+                android:textColor="@color/gray"
+                android:textSize="14dp" />
+            <EditText
+                android:id="@+id/commercial_register"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:drawablePadding="10dp"
+                android:drawableTint="#BBBBBB"
+                android:layout_marginTop="20dp"
+                android:enabled="false"
+                android:visibility="gone"
+                android:background="@drawable/edit_text_bg"
+                android:hint="رقم السجل التجاري"
+                android:padding="10dp"
+                android:textColor="@color/gray"
+                android:textSize="14dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/signUpButton"
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="55dp"
+                android:backgroundTint="@color/orange"
+                android:text="انشاء حساب"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textFontWeight="400" />
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

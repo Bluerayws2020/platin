@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_graph"
+    app:startDestination="@id/homeFragment"
+    >
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.blueray.platin.ui.fragments.HomeFragment"
+        android:label="home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_subCategoriesFragment"
+            app:destination="@id/subCategoriesFragment" />
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.blueray.platin.ui.fragments.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/contactUsFragment"
+        android:name="com.blueray.platin.ui.fragments.ContactUsFragment"
+        android:label="fragment_contact_us"
+        tools:layout="@layout/fragment_contact_us" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.blueray.platin.ui.fragments.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" >
+
+        <action
+            android:id="@+id/action_cartFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/subCategoriesFragment"
+        android:name="com.blueray.platin.ui.fragments.SubCategoriesFragment"
+        android:label="fragment_sub_categories"
+        tools:layout="@layout/fragment_sub_categories" >
+        <action
+            android:id="@+id/action_subCategoriesFragment_to_subCategoryDetailsFragment"
+            app:destination="@id/subCategoryDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/subCategoryDetailsFragment"
+        android:name="com.blueray.platin.ui.fragments.SubCategoryDetailsFragment"
+        android:label="SubCategoryDetailsFragment" >
+        <action
+            android:id="@+id/action_subCategoryDetailsFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.blueray.platin.ui.fragments.ProductDetailsFragment"
+        android:label="ProductDetailsFragment" />
+    <fragment
+        android:id="@+id/aboutCompanyFragment"
+        android:name="com.blueray.platin.ui.fragments.AboutCompanyFragment"
+        android:label="fragment_about_company"
+        tools:layout="@layout/fragment_about_company" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/marketingFragment"
+        android:name="com.blueray.platin.ui.fragments.MarketingFragment"
+        android:label="fragment_marketing"
+        tools:layout="@layout/fragment_marketing" >
+        <action
+            android:id="@+id/action_marketingFragment_to_picturesFragment"
+            app:destination="@id/picturesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/picturesFragment"
+        android:name="com.blueray.platin.ui.fragments.PicturesFragment"
+        android:label="fragment_pictures"
+        tools:layout="@layout/fragment_pictures" />
+    <fragment
+        android:id="@+id/brandsFragment"
+        android:name="com.blueray.platin.ui.fragments.BrandsFragment"
+        android:label="fragment_brands"
+        tools:layout="@layout/fragment_brands" />
+    <fragment
+        android:id="@+id/certificatesFragment"
+        android:name="com.blueray.platin.ui.fragments.CertificatesFragment"
+        android:label="fragment_certificates"
+        tools:layout="@layout/fragment_certificates" />
+    <fragment
+        android:id="@+id/companiesFragment"
+        android:name="com.blueray.platin.ui.fragments.CompaniesFragment"
+        android:label="fragment_companies"
+        tools:layout="@layout/fragment_companies" />
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.blueray.platin.ui.fragments.PaymentFragment"
+        android:label="PaymentFragment" />
+</navigation>

@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemTextColor">@drawable/bottom_navigation_icon_color</item>
+        <item name="fontFamily">@font/israr_syria</item>
+    </style>
+</resources>

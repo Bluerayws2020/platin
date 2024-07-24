@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/home_out"
+        android:title="الرئيسية"
+        />
+    <item
+        android:id="@+id/cartFragment"
+        android:icon="@drawable/ic_cart"
+        android:title="مشترياتي"
+        />
+
+    <item
+        android:id="@+id/space"
+        android:title=""
+        />
+
+    <item
+        android:id="@+id/contactUsFragment"
+        android:icon="@drawable/ic_contact_us"
+        android:title="اتصل بنا"
+        />
+    <item
+        android:id="@+id/accountFragment"
+        android:icon="@drawable/profile_out"
+        android:title="حسابي"
+        />
+
+</menu>

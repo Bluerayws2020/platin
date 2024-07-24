@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.PicturesFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+        <include
+            android:id="@+id/include_tab"
+            layout="@layout/header_menu" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:maxLines="1"
+            android:text="الصور"
+            android:textColor="@color/blue"
+            android:textFontWeight="400"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/item_pic"
+            android:layout_width="match_parent"
+            android:layout_height="290dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="25dp"
+            android:elevation="7dp"
+            android:src="@drawable/truck2"
+            />
+
+        <TextView
+            android:id="@+id/product_title"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="ابرام اتفاقية شراكة مع شركة petzil"
+            android:textColor="@color/black"
+            android:textFontWeight="500"
+            android:textSize="17sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="28-01-2024"
+            android:textColor="@color/orange_dark"
+            android:textFontWeight="400"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginHorizontal="30dp"
+            android:text="شركة بلاتين للاستيراد والتصدير ذ.م.م هي شركة رائدة في مجال خدمات الإستيراد والتصدير والإنتاج والتجارة وحلول النقل والشحن البري و الجوي و البحري والشحن السريع وسلاسل التوريد شركة بلاتين للاستيراد والتصدير ذ.م.م هي شركة رائدة في مجال خدمات الإستيراد والتصدير والإنتاج والتجارة وحلول النقل والشحن البري و الجوي و البحري والشحن السريع وسلاسل التوريد."
+            android:textColor="@color/gray"
+            android:textFontWeight="500"
+            android:textSize="17sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="30sp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingHorizontal="5dp"
+            android:nestedScrollingEnabled="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:spanCount="6"
+            tools:listitem="@layout/item_pictur" />
+
+
+    </LinearLayout>
+</ScrollView>
