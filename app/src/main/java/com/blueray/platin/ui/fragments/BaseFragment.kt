@@ -12,10 +12,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseFragment<VB : ViewBinding?, VM : ViewModel> : Fragment() {
+abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
 
-    private var _binding: VB? = null
-    protected val binding get() = _binding!!
+    var _binding: VB? = null
+    protected val binding get() = _binding
     protected abstract val viewModel: VM
     protected var mContext: Context? = null
     private var progressDialog = ProgressDialogFragment()
@@ -54,7 +54,6 @@ abstract class BaseFragment<VB : ViewBinding?, VM : ViewModel> : Fragment() {
     fun toast(message: String) =
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
 
-
     fun applicationContext(): Context = requireActivity().applicationContext
 
     fun isNetWorkAvailable(): Boolean {
@@ -62,12 +61,10 @@ abstract class BaseFragment<VB : ViewBinding?, VM : ViewModel> : Fragment() {
             context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val network = connectivityManager.activeNetwork
         val networkCapabilities = connectivityManager.getNetworkCapabilities(network)
-        return if (networkCapabilities != null) {
-            when {
-                networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-                networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-                else -> networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
-            }
-        } else false
+        return networkCapabilities?.run {
+            hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                    hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
+                    hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
+        } ?: false
     }
 }

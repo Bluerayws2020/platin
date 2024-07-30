@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    tools:context=".ui.fragments.TraderSignUpFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/traderForm"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/traderLastName"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_text_bg"
+                android:drawablePadding="10dp"
+                android:drawableTint="#BBBBBB"
+                android:hint="اسم العائلة"
+                android:padding="10dp"
+                android:textColor="@color/gray"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/traderFirstName"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_text_bg"
+                android:drawablePadding="10dp"
+                android:drawableTint="#BBBBBB"
+                android:hint="الإسم الأول"
+                android:padding="10dp"
+                android:textColor="@color/gray"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/traderPhone"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_bg"
+            android:drawablePadding="10dp"
+            android:drawableTint="#BBBBBB"
+            android:hint="رقم الهاتف"
+            android:inputType="phone"
+            android:padding="10dp"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/traderEmail"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_bg"
+            android:drawablePadding="10dp"
+            android:drawableTint="#BBBBBB"
+            android:hint="البريد الالكتروني"
+            android:padding="10dp"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+
+
+        <EditText
+            android:id="@+id/commercialName"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_bg"
+            android:drawablePadding="10dp"
+            android:drawableTint="#BBBBBB"
+            android:hint="الأسم التجاري"
+            android:padding="10dp"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/commercialRecord"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_bg"
+            android:drawablePadding="10dp"
+            android:drawableTint="#BBBBBB"
+            android:hint="السجل التجاري"
+            android:padding="10dp"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/tradingLicense"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_bg"
+            android:drawablePadding="10dp"
+            android:drawableTint="#BBBBBB"
+            android:hint="رخصة المهنة"
+            android:padding="10dp"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/traderCountry"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_bg"
+            android:drawablePadding="10dp"
+            android:drawableTint="#BBBBBB"
+            android:padding="10dp"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/traderCity"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_bg"
+            android:drawablePadding="10dp"
+            android:drawableTint="#BBBBBB"
+            android:hint="المدينة"
+            android:padding="10dp"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/traderStreet"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_bg"
+            android:drawablePadding="10dp"
+            android:drawableTint="#BBBBBB"
+            android:hint="الشارع"
+            android:padding="10dp"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/traderBuilding"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_bg"
+            android:drawablePadding="10dp"
+            android:drawableTint="#BBBBBB"
+            android:hint="رقم البناية"
+            android:padding="10dp"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/traderPassword"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_bg"
+            android:drawablePadding="10dp"
+            android:drawableTint="#BBBBBB"
+            android:hint="كلمة المرور"
+            android:padding="10dp"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/traderConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_bg"
+            android:drawablePadding="10dp"
+            android:drawableTint="#BBBBBB"
+            android:hint="تأكيد كلمة المرور"
+            android:padding="10dp"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+    </LinearLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signUpButton"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/orange"
+        android:text="انشاء حساب"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
+</LinearLayout>

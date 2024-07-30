@@ -36,12 +36,12 @@ class ProductDetailsFragment : BaseFragment<FragmentProductDetailsBinding, AppVi
         super.onViewCreated(view, savedInstanceState)
 
         navController = Navigation.findNavController(view)
-        binding.includeTab.imageView2.setBackgroundDrawable(resources.getDrawable(R.drawable.head_pic))
-        binding.includeTab.title.text = "حماية الرأس"
-        binding.includeTab.back.setOnClickListener {
+        binding?.includeTab?.imageView2?.setBackgroundDrawable(resources.getDrawable(R.drawable.head_pic))
+        binding?.includeTab?.title?.text = "حماية الرأس"
+        binding?.includeTab?.back?.setOnClickListener {
             navController?.popBackStack()
         }
-        binding.includeTab.menu.setOnClickListener {
+        binding?.includeTab?.menu?.setOnClickListener {
             val intent = Intent(activity, MenuActivity::class.java)
             startActivity(intent)
         }
@@ -65,8 +65,8 @@ class ProductDetailsFragment : BaseFragment<FragmentProductDetailsBinding, AppVi
 
         })
 
-        binding.recycler.setHasFixedSize(true)
-        binding.recycler.adapter = productAdapter
+        binding?.recycler?.setHasFixedSize(true)
+        binding?.recycler?.adapter = productAdapter
 
 
         val offersAdapter = OffersAdapter(object : OnProductListener {
@@ -88,8 +88,8 @@ class ProductDetailsFragment : BaseFragment<FragmentProductDetailsBinding, AppVi
 
         })
 
-        binding.recycler2.setHasFixedSize(true)
-        binding.recycler2.adapter = offersAdapter
+        binding?.recycler2?.setHasFixedSize(true)
+        binding?.recycler2?.adapter = offersAdapter
 
 
     }

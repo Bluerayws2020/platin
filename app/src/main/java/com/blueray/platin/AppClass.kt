@@ -2,6 +2,7 @@ package com.blueray.platin
 
 import android.app.Application
 import android.content.Context
+import androidx.appcompat.app.AppCompatDelegate
 
 class AppClass : Application() {
 
@@ -13,6 +14,7 @@ class AppClass : Application() {
         super.onCreate()
 
         context =this
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
 //        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE)
 //

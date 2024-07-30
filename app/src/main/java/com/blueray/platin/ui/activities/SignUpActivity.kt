@@ -1,17 +1,21 @@
 package com.blueray.platin.ui.activities
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.core.view.isVisible
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.blueray.platin.R
 import com.blueray.platin.databinding.ActivitySignUpBinding
-import com.blueray.platin.helpers.HelperUtils
 import com.blueray.platin.models.NetworkResults
-import com.blueray.platin.models.RegisterIndvisualData
-import com.blueray.platin.models.RegisterTraderData
+import com.blueray.platin.ui.fragments.IndividualSignUpFragment
+import com.blueray.platin.ui.fragments.TraderSignUpFragment
 import com.blueray.platin.viewModels.AppViewModel
 
 class SignUpActivity : AppCompatActivity() {
@@ -19,185 +23,76 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
     private val viewModel: AppViewModel by viewModels()
     var TYPE = 1
+    private val countryIdMap = mutableMapOf<String, Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Buttons click listener
         binding.indevidual.setOnClickListener {
-            TYPE = 1
-            binding.indevidual.setBackgroundColor(resources.getColor(R.color.white))
-            binding.indevidual.setStrokeColorResource(R.color.orange)
-            binding.indevidual.setTextColor(resources.getColor(R.color.blue))
+            isIndividualSelected()
 
-            binding.commircer.setBackgroundColor(resources.getColor(R.color.blue))
-            binding.commircer.setStrokeColorResource(R.color.gray)
-            binding.commircer.setTextColor(resources.getColor(R.color.gray))
-
-            binding.commericalName.isVisible = false
-            binding.professionLicence.isVisible = false
-            binding.commercialRegister.isVisible = false
         }
-
         binding.commircer.setOnClickListener {
-            TYPE = 2
-            binding.commircer.setBackgroundColor(resources.getColor(R.color.white))
-            binding.commircer.setStrokeColorResource(R.color.orange)
-            binding.commircer.setTextColor(resources.getColor(R.color.blue))
-
-            binding.indevidual.setBackgroundColor(resources.getColor(R.color.blue))
-            binding.indevidual.setStrokeColorResource(R.color.gray)
-            binding.indevidual.setTextColor(resources.getColor(R.color.gray))
-
-            binding.commericalName.isVisible = true
-            binding.professionLicence.isVisible = true
-            binding.commercialRegister.isVisible = true
+            isTraderSelected()
+            replaceFragment(TraderSignUpFragment (viewModel))
+        }
+        if (savedInstanceState == null) {
+            replaceFragment(IndividualSignUpFragment(viewModel))
         }
 
-        binding.signUpButton.setOnClickListener {
-            if(TYPE == 1) {
-                registerIndvisualData()
-                validateFieldsIndevidual()
-            } else {
-                registerTraderData()
-                validateFieldsTrader()
-            }
-        }
 
+
+        //Handle spinner selection for trader country
+//        binding.traderCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+//                val selectedCountryName = parent.getItemAtPosition(position).toString()
+//                val selectedCountryId = countryIdMap[selectedCountryName]
+//                Toast.makeText(this@SignUpActivity, "Selected ID: $selectedCountryId", Toast.LENGTH_SHORT).show()
+//            }
+//
+//            override fun onNothingSelected(parent: AdapterView<*>) {
+//                // Do nothing
+//            }
+//        }
     }
 
-    private fun validateFieldsIndevidual() {
-        if (binding.email.text.isEmpty()) {
-            binding.email.setError("الحقل هذا مطلوب")
-        } else if (binding.name.text.isEmpty()) {
-            binding.name.setError("الحقل هذا مطلوب")
-        } else if (binding.password.text.isEmpty()) {
-            binding.password.setError("الحقل هذا مطلوب")
-        } else if (binding.confPassword.text.isEmpty()) {
-            binding.confPassword.setError("الحقل هذا مطلوب")
-        } else if (binding.phone.text.isEmpty()) {
-            binding.phone.setError("الحقل هذا مطلوب")
-        } else if (binding.password.text.toString() != binding.confPassword.text.toString()) {
-            Toast.makeText(this, "كلمة السر غير متطابقة", Toast.LENGTH_LONG).show()
-        } else {
-            viewModel.retrieveRegisterIndvisual(
-                binding.email.text.toString(),
-                binding.name.text.toString(),
-                " ",
-                "12",
-                "12",
-                "1",
-                "1",
-                "1",
-                "1",
-                binding.password.text.toString(),
-                binding.confPassword.text.toString(),
-                binding.phone.text.toString()
-            )
-        }
+    // To change the style when individual is selected and set the type
+    private fun isIndividualSelected() {
+        TYPE = 1
+        binding.indevidual.setBackgroundColor(resources.getColor(R.color.white))
+        binding.indevidual.setStrokeColorResource(R.color.orange)
+        binding.indevidual.setTextColor(resources.getColor(R.color.blue))
+
+        binding.commircer.setBackgroundColor(resources.getColor(R.color.blue))
+        binding.commircer.setStrokeColorResource(R.color.gray)
+        binding.commircer.setTextColor(resources.getColor(R.color.gray))
+        //To get the fragment that has the individual sign up
+        replaceFragment(IndividualSignUpFragment(viewModel))
     }
 
-    private fun validateFieldsTrader() {
-        if (binding.email.text.isEmpty()) {
-            binding.email.setError("الحقل هذا مطلوب")
-        } else if (binding.name.text.isEmpty()) {
-            binding.name.setError("الحقل هذا مطلوب")
-        } else if (binding.password.text.isEmpty()) {
-            binding.password.setError("الحقل هذا مطلوب")
-        } else if (binding.confPassword.text.isEmpty()) {
-            binding.confPassword.setError("الحقل هذا مطلوب")
-        } else if (binding.phone.text.isEmpty()) {
-            binding.phone.setError("الحقل هذا مطلوب")
+    // To change the style when trader is selected and set the type
+    private fun isTraderSelected() {
+        TYPE = 2
+        binding.commircer.setBackgroundColor(resources.getColor(R.color.white))
+        binding.commircer.setStrokeColorResource(R.color.orange)
+        binding.commircer.setTextColor(resources.getColor(R.color.blue))
 
-        } else if (binding.commericalName.text.isEmpty()) {
-            binding.commericalName.setError("الحقل هذا مطلوب")
-        } else if (binding.professionLicence.text.isEmpty()) {
-            binding.professionLicence.setError("الحقل هذا مطلوب")
-        } else if (binding.commercialRegister.text.isEmpty()) {
-            binding.commercialRegister.setError("الحقل هذا مطلوب")
-
-
-        } else if (binding.password.text.toString() != binding.confPassword.text.toString()) {
-            Toast.makeText(this, "كلمة السر غير متطابقة", Toast.LENGTH_LONG).show()
-        } else {
-            viewModel.retrieveRegisterTrader(
-                binding.email.text.toString(),
-                binding.name.text.toString(),
-                " ",
-                "12",
-                "12",
-                "1",
-                "1",
-                binding.password.text.toString(),
-                binding.confPassword.text.toString(),
-                binding.phone.text.toString(),
-                "",
-                "",
-                "",
-            )
-        }
+        binding.indevidual.setBackgroundColor(resources.getColor(R.color.blue))
+        binding.indevidual.setStrokeColorResource(R.color.gray)
+        binding.indevidual.setTextColor(resources.getColor(R.color.gray))
+//        binding.individualForm.visibility = View.GONE
+//        binding.traderForm.visibility = View.VISIBLE
     }
 
-    private fun registerIndvisualData() {
-        viewModel.getRegisterIndvisualResponse().observe(this) { result ->
-            when (result) {
-                is NetworkResults.Success -> {
-                    if (result.data.status == 200) {
-                        saveIndvisualData(result.data.data, result.data.token)
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        Toast.makeText(this, result.data.message, Toast.LENGTH_LONG).show()
-                    }
-                }
-                is NetworkResults.Error -> {
-                    Toast.makeText(this, result.exception.message.toString(), Toast.LENGTH_LONG).show()
-                }
-                is NetworkResults.NoInternet -> {
-                }
-            }
-        }
-    }
 
-    private fun registerTraderData() {
-        viewModel.getRegisterTraderResponse().observe(this) { result ->
-            when (result) {
-                is NetworkResults.Success -> {
-                    if (result.data.status == 200) {
-                        saveTraderData(result.data.data, result.data.token)
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        Toast.makeText(this, result.data.message, Toast.LENGTH_LONG).show()
-                    }
-                }
-                is NetworkResults.Error -> {
-                    Toast.makeText(this, result.exception.message.toString(), Toast.LENGTH_LONG).show()
-                }
-                is NetworkResults.NoInternet -> {
-                }
-            }
-        }
-    }
-
-    fun saveIndvisualData(user: RegisterIndvisualData, token: String) {
-        val sharedPreferences = getSharedPreferences(HelperUtils.SHARED_PREF, MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("uid", user.id.toString())
-        editor.putString("user_name", user.first_name)
-        editor.putString("token", token)
-        editor.apply()
-    }
-
-    fun saveTraderData(user: RegisterTraderData, token: String) {
-        val sharedPreferences = getSharedPreferences(HelperUtils.SHARED_PREF, MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("uid", user.id.toString())
-        editor.putString("user_name", user.first_name)
-        editor.putString("token", token)
-        editor.apply()
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentManager: FragmentManager = supportFragmentManager
+        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragmentContainer, fragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
     }
 }

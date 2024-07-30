@@ -16,7 +16,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/image1"
+            android:id="@+id/exit"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center"

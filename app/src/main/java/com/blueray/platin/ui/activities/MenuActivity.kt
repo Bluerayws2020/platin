@@ -16,6 +16,11 @@ class MenuActivity : AppCompatActivity() {
         supportActionBar?.hide()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        binding.exit.setOnClickListener {
+            finish()
+        }
+
+
         binding.aboutCompany.setOnClickListener{
             val intent = Intent(this@MenuActivity, MainActivity::class.java)
             val bundle = Bundle()

@@ -33,11 +33,11 @@ class PicturesFragment : BaseFragment<FragmentPicturesBinding, AppViewModel>() {
         super.onViewCreated(view, savedInstanceState)
 
         navController = Navigation.findNavController(view)
-        binding.includeTab.title.text = "الصور"
-        binding.includeTab.back.setOnClickListener {
+        binding?.includeTab?.title?.text = "الصور"
+        binding?.includeTab?.back?.setOnClickListener {
             navController?.popBackStack()
         }
-        binding.includeTab.menu.setOnClickListener {
+        binding?.includeTab?.menu?.setOnClickListener {
             val intent = Intent(activity, MenuActivity::class.java)
             startActivity(intent)
         }
@@ -48,8 +48,8 @@ class PicturesFragment : BaseFragment<FragmentPicturesBinding, AppViewModel>() {
                 navController?.navigate(R.id.action_homeFragment_to_subCategoriesFragment)
             }
         })
-        binding.recycler.setHasFixedSize(true)
-        binding.recycler.adapter = picturesAdapter
+        binding?.recycler?.setHasFixedSize(true)
+        binding?.recycler?.adapter = picturesAdapter
 
 
     }

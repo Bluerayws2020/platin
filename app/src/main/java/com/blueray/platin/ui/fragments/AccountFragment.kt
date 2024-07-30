@@ -29,20 +29,20 @@ class AccountFragment : BaseFragment<FragmentAccountBinding, AppViewModel>() {
         super.onViewCreated(view, savedInstanceState)
 
         navController = Navigation.findNavController(view)
-        binding.includeTab.title.text = "حسابي"
-        binding.includeTab.back.setOnClickListener {
+        binding?.includeTab?.title?.text = "حسابي"
+        binding?.includeTab?.back?.setOnClickListener {
             navController?.popBackStack()
         }
-        binding.includeTab.menu.setOnClickListener {
+        binding?.includeTab?.menu?.setOnClickListener {
             val intent = Intent(activity, MenuActivity::class.java)
             startActivity(intent)
         }
 
-        binding.cart.setOnClickListener {
+        binding?.cart?.setOnClickListener {
             navController?.navigate(R.id.cartFragment)
         }
 
-        binding.cart.setOnClickListener {
+        binding?.cart?.setOnClickListener {
            // navController?.navigate(R.id.cartFragment)
         }
 

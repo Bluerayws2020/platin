@@ -15,7 +15,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,26 +48,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/search"
+
+                <EditText
+                    android:id="@+id/searchView"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginHorizontal="25dp"
                     android:layout_marginVertical="10dp"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="2dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    tools:ignore="MissingConstraints">
-
-                    <androidx.appcompat.widget.SearchView
-                        android:id="@+id/searchView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginVertical="10dp" />
-
-
-                </com.google.android.material.card.MaterialCardView>
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:drawableEnd="@drawable/baseline_search_24"
+                    android:background="@drawable/edit_text_bg"
+                    android:hint="ابحث عن منتج"
+                    android:textColorHint="#818181"
+                    android:padding="8dp"
+                    android:layout_marginHorizontal="20dp"
+                     />
 
 
                 <TextView
@@ -84,7 +79,7 @@
                     android:textFontWeight="400"
                     android:textSize="19sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/search" />
+                    app:layout_constraintTop_toBottomOf="@id/searchView" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/spinner_order"
@@ -126,8 +121,8 @@
                     android:layout_marginTop="20dp"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/spinner_order"
-                    >
+                    app:layout_constraintTop_toBottomOf="@id/spinner_order">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -138,8 +133,7 @@
                         android:text="السعر : "
                         android:textColor="@color/black"
                         android:textFontWeight="400"
-                        android:textSize="19sp"
-                        />
+                        android:textSize="19sp" />
 
                     <TextView
                         android:id="@+id/price"
@@ -151,10 +145,7 @@
                         android:text="20JD"
                         android:textColor="@color/gray"
                         android:textFontWeight="400"
-                        android:textSize="15sp"
-                        />
-
-
+                        android:textSize="15sp" />
 
 
                 </LinearLayout>
@@ -176,10 +167,9 @@
                         android:gravity="center"
                         android:orientation="horizontal"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        >
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recycler_price"
@@ -206,10 +196,10 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="30dp"
                 android:nestedScrollingEnabled="true"
-                android:paddingBottom="230dp"
-                android:overScrollMode="never"
                 android:orientation="vertical"
+                android:overScrollMode="never"
                 android:paddingHorizontal="5dp"
+                android:paddingBottom="230dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
 
                 app:spanCount="2"

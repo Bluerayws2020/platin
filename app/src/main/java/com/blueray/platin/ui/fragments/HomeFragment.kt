@@ -31,7 +31,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AppViewModel>() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
-        binding.includeTab.menu.setOnClickListener {
+        binding?.includeTab?.menu?.setOnClickListener {
             val intent = Intent(activity, MenuActivity::class.java)
             startActivity(intent)
         }
@@ -43,8 +43,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AppViewModel>() {
 
         })
 
-        binding.recycler.setHasFixedSize(true)
-        binding.recycler.adapter = categoriesAdapter
+        binding?.recycler?.setHasFixedSize(true)
+        binding?.recycler?.adapter = categoriesAdapter
 
     }
 

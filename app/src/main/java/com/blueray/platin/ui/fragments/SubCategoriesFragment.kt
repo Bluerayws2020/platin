@@ -32,7 +32,7 @@ class SubCategoriesFragment : BaseFragment<FragmentSubCategoriesBinding, AppView
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        binding.includeTab.menu.setOnClickListener {
+        binding?.includeTab?.menu?.setOnClickListener {
             val intent = Intent(activity, MenuActivity::class.java)
             startActivity(intent)
         }
@@ -47,8 +47,8 @@ class SubCategoriesFragment : BaseFragment<FragmentSubCategoriesBinding, AppView
 
         })
 
-        binding.recycler.setHasFixedSize(true)
-        binding.recycler.adapter = subCategoriesAdapter
+        binding?.recycler?.setHasFixedSize(true)
+        binding?.recycler?.adapter = subCategoriesAdapter
 
     }
 

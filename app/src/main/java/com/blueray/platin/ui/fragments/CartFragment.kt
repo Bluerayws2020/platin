@@ -34,21 +34,21 @@ class CartFragment : BaseFragment<FragmentCartBinding, AppViewModel>() {
         super.onViewCreated(view, savedInstanceState)
 
         navController = Navigation.findNavController(view)
-        binding.includeTab.title.text = "مشترياتي"
-        binding.includeTab.back.setOnClickListener {
+        binding?.includeTab?.title?.text = "مشترياتي"
+        binding?.includeTab?.back?.setOnClickListener {
             navController?.popBackStack()
         }
-        binding.includeTab.menu.setOnClickListener {
+        binding?.includeTab?.menu?.setOnClickListener {
             val intent = Intent(activity, MenuActivity::class.java)
             startActivity(intent)
         }
 
 
         val cartItemsAdapter = CartItemsAdapter()
-        binding.recycler.setHasFixedSize(true)
-        binding.recycler.adapter = cartItemsAdapter
+        binding?.recycler?.setHasFixedSize(true)
+        binding?.recycler?.adapter = cartItemsAdapter
 
-        binding.clientInfoTab.continueToPayment.setOnClickListener {
+        binding?.clientInfoTab?.continueToPayment?.setOnClickListener {
             navController?.navigate(R.id.action_cartFragment_to_paymentFragment)
         }
 

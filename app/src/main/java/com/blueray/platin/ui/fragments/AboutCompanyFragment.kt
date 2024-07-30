@@ -31,11 +31,11 @@ class AboutCompanyFragment : BaseFragment<FragmentAboutCompanyBinding, AppViewMo
         super.onViewCreated(view, savedInstanceState)
 
         navController = Navigation.findNavController(view)
-        binding.includeTab.title.text = "عن الشركة"
-        binding.includeTab.back.setOnClickListener {
+        binding?.includeTab?.title?.text = "عن الشركة"
+        binding?.includeTab?.back?.setOnClickListener {
             navController?.popBackStack()
         }
-        binding.includeTab.menu.setOnClickListener {
+        binding?.includeTab?.menu?.setOnClickListener {
             val intent = Intent(activity, MenuActivity::class.java)
             startActivity(intent)
         }

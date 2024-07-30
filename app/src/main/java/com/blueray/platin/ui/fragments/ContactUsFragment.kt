@@ -38,8 +38,8 @@ class ContactUsFragment : BaseFragment<FragmentContactUsBinding, AppViewModel>()
         navController = Navigation.findNavController(view)
 
         navController = Navigation.findNavController(view)
-        binding.includeTab.back.isVisible = false
-        binding.includeTab.menu.setOnClickListener {
+        binding?.includeTab?.back?.isVisible = false
+        binding?.includeTab?.menu?.setOnClickListener {
             val intent = Intent(activity, MenuActivity::class.java)
             startActivity(intent)
         }

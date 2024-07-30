@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             R.id.contactUsFragment,
             R.id.cartFragment
         ))
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
+       // NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
         NavigationUI.setupWithNavController(binding.bottomNav, navController)
 
 //        navController.addOnDestinationChangedListener { _, destination, _ ->

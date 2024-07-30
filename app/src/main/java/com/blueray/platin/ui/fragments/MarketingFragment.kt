@@ -32,54 +32,54 @@ class MarketingFragment  : BaseFragment<FragmentMarketingBinding, AppViewModel>(
         super.onViewCreated(view, savedInstanceState)
 
         navController = Navigation.findNavController(view)
-        binding.includeTab.title.text = "المركز الإعلامي"
-        binding.includeTab.back.setOnClickListener {
+        binding?.includeTab?.title?.text = "المركز الإعلامي"
+        binding?.includeTab?.back?.setOnClickListener {
             navController?.popBackStack()
         }
-        binding.includeTab.menu.setOnClickListener {
+        binding?.includeTab?.menu?.setOnClickListener {
             val intent = Intent(activity, MenuActivity::class.java)
             startActivity(intent)
         }
 
 
         val picturesPagerAdapter = PicturesPagerAdapter()
-        binding.viewPager.adapter = picturesPagerAdapter
-        binding.viewPager.setPageMargin(-400)
-        binding.viewPager.offscreenPageLimit = 5
-        binding.viewPager.post {
-            binding.viewPager.setCurrentItem(1, true)
+        binding?.viewPager?.adapter = picturesPagerAdapter
+        binding?.viewPager?.setPageMargin(-400)
+        binding?.viewPager?.offscreenPageLimit = 5
+        binding?.viewPager?.post {
+            binding!!.viewPager.setCurrentItem(1, true)
         }
-        binding.springDotsIndicator.attachTo(binding.viewPager)
+        binding?.springDotsIndicator?.attachTo(binding!!.viewPager)
 
 
         val videoPagerAdapter = VideoPagerAdapter()
-        binding.viewPager2.adapter = videoPagerAdapter
-        binding.viewPager2.setPageMargin(-195)
-        binding.viewPager2.offscreenPageLimit = 5
-        binding.viewPager2.post {
-            binding.viewPager2.setCurrentItem(1, true)
+        binding?.viewPager2?.adapter = videoPagerAdapter
+        binding?.viewPager2?.setPageMargin(-195)
+        binding?.viewPager2?.offscreenPageLimit = 5
+        binding?.viewPager2?.post {
+            binding?.viewPager2?.setCurrentItem(1, true)
         }
 
         var viewPager1CurrentPage = 0
         var viewPager2CurrentPage = 0
 
-        binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        binding?.viewPager?.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
             override fun onPageSelected(position: Int) {
                 viewPager1CurrentPage = position
-                binding.viewPager2.setCurrentItem(position, false)
+                binding?.viewPager2?.setCurrentItem(position, false)
             }
 
             override fun onPageScrollStateChanged(state: Int) {}
         })
 
-        binding.viewPager2.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        binding?.viewPager2?.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
             override fun onPageSelected(position: Int) {
                 viewPager2CurrentPage = position
-                binding.viewPager.setCurrentItem(position, false)
+                binding?.viewPager?.setCurrentItem(position, false)
             }
 
             override fun onPageScrollStateChanged(state: Int) {}

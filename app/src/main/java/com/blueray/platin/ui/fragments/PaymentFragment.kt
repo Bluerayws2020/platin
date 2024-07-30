@@ -35,11 +35,11 @@ class PaymentFragment : BaseFragment<FragmentPaymentBinding, AppViewModel>() {
         super.onViewCreated(view, savedInstanceState)
 
         navController = Navigation.findNavController(view)
-        binding.includeTab.title.text = "مشترياتي"
-        binding.includeTab.back.setOnClickListener {
+        binding?.includeTab?.title?.text = "مشترياتي"
+        binding?.includeTab?.back?.setOnClickListener {
             navController?.popBackStack()
         }
-        binding.includeTab.menu.setOnClickListener {
+        binding?.includeTab?.menu?.setOnClickListener {
             val intent = Intent(activity, MenuActivity::class.java)
             startActivity(intent)
         }

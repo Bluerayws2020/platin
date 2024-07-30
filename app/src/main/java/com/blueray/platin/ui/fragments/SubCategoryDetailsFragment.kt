@@ -35,25 +35,25 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
         super.onViewCreated(view, savedInstanceState)
 
         navController = Navigation.findNavController(view)
-        binding.includeTab.imageView2.setBackgroundDrawable(resources.getDrawable(R.drawable.head_pic))
-        binding.includeTab.title.text = "حماية الرأس"
-        binding.includeTab.back.setOnClickListener {
+        binding?.includeTab?.imageView2?.setBackgroundDrawable(resources.getDrawable(R.drawable.head_pic))
+        binding?.includeTab?.title?.text = "حماية الرأس"
+        binding?.includeTab?.back?.setOnClickListener {
             navController?.popBackStack()
         }
-        binding.includeTab.menu.setOnClickListener {
+        binding?.includeTab?.menu?.setOnClickListener {
             val intent = Intent(activity, MenuActivity::class.java)
             startActivity(intent)
         }
 
         val priceProgressAdapter = PriceProgressAdapter(object : onCategoryClick {
             override fun onItemClick(position: Int) {
-                binding.price.setText("$position JD")
+                binding?.price?.setText("$position JD")
             }
 
         })
 
-        binding.recyclerPrice.setHasFixedSize(true)
-        binding.recyclerPrice.adapter = priceProgressAdapter
+        binding?.recyclerPrice?.setHasFixedSize(true)
+        binding?.recyclerPrice?.adapter = priceProgressAdapter
 
         val productAdapter = ProductsAdapter(object : OnProductListener {
             override fun addToCart(pid: Int, quantity: String) {
@@ -74,8 +74,8 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
 
         })
 
-        binding.recyclerItem.setHasFixedSize(true)
-        binding.recyclerItem.adapter = productAdapter
+        binding?.recyclerItem?.setHasFixedSize(true)
+        binding?.recyclerItem?.adapter = productAdapter
 
 
     }
