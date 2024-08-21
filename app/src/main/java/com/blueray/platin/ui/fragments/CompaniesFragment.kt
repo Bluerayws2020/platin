@@ -45,7 +45,7 @@ class CompaniesFragment : BaseFragment<FragmentCompaniesBinding, AppViewModel>()
 
 
         val companiesAdapter = CompaniesAdapter(object : onCategoryClick {
-            override fun onItemClick(position: Int) {
+            override fun onItemClick(id: Int, position: Int) {
                 navController?.navigate(R.id.action_homeFragment_to_subCategoriesFragment)
             }
         })

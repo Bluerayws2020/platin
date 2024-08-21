@@ -2,15 +2,10 @@ package com.blueray.platin.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.blueray.platin.R
 import com.blueray.platin.databinding.ItemCompanyBinding
-import com.blueray.platin.databinding.ItemPicturBinding
-import com.blueray.platin.databinding.ItemProductBinding
-import com.blueray.platin.databinding.ItemProductHorizontalBinding
 
 
 class CompaniesAdapter(
@@ -36,12 +31,14 @@ class CompaniesAdapter(
 
 
             binding.productCard.setOnClickListener {
-                onProductListener.onItemClick(position)
+                onProductListener.onItemClick(position = position, id = 0)
             }
-            if(position != 0){
+            if (position != 0) {
                 binding.title.isVisible = false
                 binding.describtion.isVisible = false
-                binding.productCard.setStrokeColor(itemView.context.getResources().getColor(R.color.gray500))
+                binding.productCard.setStrokeColor(
+                    itemView.context.getResources().getColor(R.color.gray500)
+                )
             }
 
 

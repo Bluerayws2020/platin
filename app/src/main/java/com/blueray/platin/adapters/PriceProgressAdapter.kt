@@ -61,7 +61,7 @@ class PriceProgressAdapter(
 
 
             binding.productCard.setOnClickListener {
-                onCategoryListener.onItemClick(position)
+                onCategoryListener.onItemClick(position = position , id = 0)
                 selectedPosition = position
                 setProgress(listOfZeros, position)
                 notifyDataSetChanged()

@@ -6,15 +6,16 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.blueray.platin.databinding.ItemProductBinding
+import com.blueray.platin.models.Product
+import com.bumptech.glide.Glide
 
 
 class ProductsAdapter(
-    //private val productsList: List<ProductDetails>,
+    private var list: MutableList<Product>,  // Change to MutableList
     private val onProductListener: OnProductListener
-) :
-    RecyclerView.Adapter<ProductsAdapter.ProductsViewHolder>() , Filterable {
+) : RecyclerView.Adapter<ProductsAdapter.ProductsViewHolder>(), Filterable {
 
-    private var filteredProductsList: List<String> = emptyList()
+    private var filteredProductsList: MutableList<Product> = list
 
     inner class ProductsViewHolder(val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -25,63 +26,60 @@ class ProductsAdapter(
     }
 
     override fun getItemCount(): Int {
-        return 16
+        return filteredProductsList.size
     }
 
     override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
+        val data = filteredProductsList[position]
         holder.apply {
-
+            binding.productTitle.text = data.name
+            Glide.with(itemView.context).load(data.image).into(binding.itemPic)
 
             binding.productCard.setOnClickListener {
-                onProductListener.showDetails(position)
+                onProductListener.showDetails(data.id)
             }
-
-
-//            binding.favouriteClick.setOnCheckedChangeListener{ buttonView, isChecked ->
-//                if (buttonView?.isPressed == true) {
-//                    if (!HelperUtils.isGuest(buttonView.context)) {
-//                        if (isChecked) {
-//                            val pid = filteredProductsList [position].pid
-//                            onProductListener.addToFavourite(pid)
-//                            filteredProductsList [position].favorite = "1"
-//                        } else {
-//                            val favouriteId = filteredProductsList [position].pid
-//                            onProductListener.removeFromFavourite(favouriteId)
-//                            filteredProductsList [position].favorite = "0"
-//                        }
-//                    }
-//                }
-//            }
         }
-
-
     }
+
+    // Method to add more products to the list
+    fun addProducts(newProducts: List<Product>) {
+        val startPosition = list.size
+        list.addAll(newProducts)
+        filteredProductsList = list
+        notifyItemRangeInserted(startPosition, newProducts.size)
+    }
+
+    // Method to get current list of products
+    fun getProducts(): List<Product> {
+        return list
+    }
+    fun clearProducts() {
+        (list as MutableList).clear()
+        notifyDataSetChanged()
+    }
+
 
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
-                val searchText = constraint?.toString()?.toLowerCase() ?: ""
-//                filteredProductsList = if (searchText.isEmpty()) {
-//                    productsList
-//                } else {
-//                    productsList.filter { product ->
-//                        if(product.category_name != null && !isHome)
-//                            product.title.toLowerCase().contains(searchText) || product.category_name.toLowerCase().contains(searchText)
-//                        else
-//                            product.title.toLowerCase().contains(searchText)
-//                    }
-//                }
+                val searchText = constraint?.toString()?.lowercase() ?: ""
+                filteredProductsList = if (searchText.isEmpty()) {
+                    list
+                } else {
+                    list.filter { product ->
+                        product.name.lowercase().contains(searchText)
+                    }.toMutableList()
+                }
                 val filterResults = FilterResults()
                 filterResults.values = filteredProductsList
                 return filterResults
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                filteredProductsList = results?.values as? List<String> ?: emptyList()
-               // Log.e("***" , filteredProductsList.map { it.title }.toString())
-//                Log.e("***" , filteredProductsList.map { it.category_name }.toString())
+                filteredProductsList = results?.values as? MutableList<Product> ?: mutableListOf()
                 notifyDataSetChanged()
             }
         }
     }
 }
+

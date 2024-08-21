@@ -2,5 +2,5 @@ package com.blueray.platin.adapters
 
 interface onCategoryClick {
 
-    fun onItemClick(position: Int)
+    fun onItemClick(id: Int, position: Int)
 }

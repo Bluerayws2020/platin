@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
     android:orientation="vertical"
     tools:context=".ui.fragments.TraderSignUpFragment">
@@ -89,7 +90,7 @@
             android:textColor="@color/gray"
             android:textSize="14sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/commercialRecord"
             android:layout_width="match_parent"
             android:layout_height="45dp"
@@ -102,7 +103,7 @@
             android:textColor="@color/gray"
             android:textSize="14sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/tradingLicense"
             android:layout_width="match_parent"
             android:layout_height="45dp"
@@ -123,11 +124,12 @@
             android:background="@drawable/edit_text_bg"
             android:drawablePadding="10dp"
             android:drawableTint="#BBBBBB"
+            app:hintText="اختر دولتك"
             android:padding="10dp"
             android:textColor="@color/gray"
             android:textSize="14sp" />
 
-        <EditText
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
             android:id="@+id/traderCity"
             android:layout_width="match_parent"
             android:layout_height="45dp"
@@ -135,7 +137,7 @@
             android:background="@drawable/edit_text_bg"
             android:drawablePadding="10dp"
             android:drawableTint="#BBBBBB"
-            android:hint="المدينة"
+            app:hintText="اختر المدينة"
             android:padding="10dp"
             android:textColor="@color/gray"
             android:textSize="14sp" />

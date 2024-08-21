@@ -44,7 +44,7 @@ class PicturesFragment : BaseFragment<FragmentPicturesBinding, AppViewModel>() {
 
 
         val picturesAdapter = PicturesAdapter(object : onCategoryClick {
-            override fun onItemClick(position: Int) {
+            override fun onItemClick(id: Int, position: Int) {
                 navController?.navigate(R.id.action_homeFragment_to_subCategoriesFragment)
             }
         })

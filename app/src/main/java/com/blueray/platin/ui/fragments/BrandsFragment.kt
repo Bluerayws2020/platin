@@ -45,9 +45,11 @@ class BrandsFragment : BaseFragment<FragmentBrandsBinding, AppViewModel>() {
 
 
         val brandsAdapter = BrandsAdapter(object : onCategoryClick {
-            override fun onItemClick(position: Int) {
+            override fun onItemClick(id: Int, position: Int) {
                 navController?.navigate(R.id.action_homeFragment_to_subCategoriesFragment)
             }
+
+
         })
         binding?.recycler?.setHasFixedSize(true)
         binding?.recycler?.adapter = brandsAdapter

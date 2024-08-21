@@ -1,5 +1,6 @@
 package com.blueray.platin.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.blueray.platin.databinding.FragmentIndividaulSipgUpBinding
 import com.blueray.platin.models.NetworkResults
+import com.blueray.platin.ui.activities.MainActivity
 import com.blueray.platin.viewModels.AppViewModel
 
 
@@ -19,6 +21,8 @@ class IndividualSignUpFragment(override val viewModel: AppViewModel) :
     BaseFragment<FragmentIndividaulSipgUpBinding, AppViewModel>() {
     private val countryIdMap = mutableMapOf<String, Int>()
     private val cityIdMap = mutableMapOf<String, Int>()
+    var selectedCityId = ""
+    var selectedCountryId = ""
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -33,9 +37,18 @@ class IndividualSignUpFragment(override val viewModel: AppViewModel) :
         //Button clicks
         binding?.signUpButton?.setOnClickListener {
             if (validateForm()) {
-                Toast.makeText(requireActivity(), "Well done", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(requireActivity(), "YEEEEEET", Toast.LENGTH_SHORT).show()
+                viewModel.retrieveIndvisualRegister(
+                    first_name = binding?.individualFirstName?.text.toString(),
+                    last_name = binding?.individualLastName?.text.toString(),
+                    email = binding?.individualEmail?.text.toString(),
+                    country_id = selectedCountryId.toString(),
+                    city_id = selectedCityId.toString(),
+                    street_name = binding?.individualStreet?.text.toString(),
+                    building_name_number = binding?.individualBuilding?.text.toString(),
+                    phone = binding?.individualPhone?.text.toString(),
+                    password = binding?.individualPassword?.text.toString(),
+                    password_confirmation = binding?.individualConfirmPassword?.text.toString()
+                )
             }
 
         }
@@ -50,7 +63,7 @@ class IndividualSignUpFragment(override val viewModel: AppViewModel) :
                     id: Long
                 ) {
                     val selectedCountryName = parent.getItemAtPosition(position).toString()
-                    val selectedCountryId = countryIdMap[selectedCountryName]
+                    selectedCountryId = countryIdMap[selectedCountryName].toString()
                     Toast.makeText(
                         requireActivity(),
 
@@ -74,7 +87,7 @@ class IndividualSignUpFragment(override val viewModel: AppViewModel) :
                     id: Long
                 ) {
                     val selectedCityName = parent.getItemAtPosition(position).toString()
-                    val selectedCityId = cityIdMap[selectedCityName]
+                    selectedCityId = cityIdMap[selectedCityName].toString()
                     Toast.makeText(
                         requireActivity(),
 
@@ -94,6 +107,7 @@ class IndividualSignUpFragment(override val viewModel: AppViewModel) :
         //Observe data
         getCountries()
         getCities()
+        getIndvisualRegister()
     }
 
     //Functions to validate the fields
@@ -126,9 +140,9 @@ class IndividualSignUpFragment(override val viewModel: AppViewModel) :
             "البريد الإلكتروني غير صالح"
         ) { it.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(it).matches() }
         val isStreetNameValid =
-            validateField(binding!!.individualFirstName, "اسم الشارع مطلوب") { it.isNotEmpty() }
+            validateField(binding!!.individualStreet, "اسم الشارع مطلوب") { it.isNotEmpty() }
         val isBuildingNumberValid =
-            validateField(binding!!.individualFirstName, "رقم المبنى مطلوب") { it.isNotEmpty() }
+            validateField(binding!!.individualBuilding, "رقم المبنى مطلوب") { it.isNotEmpty() }
         val isPasswordValid = validateField(
             binding!!.individualPassword,
             "كلمة المرور يجب أن تحتوي على حروف كبيرة وصغيرة ورمز خاص على الأقل وطولها لا يقل عن 8 أحرف"
@@ -200,6 +214,27 @@ class IndividualSignUpFragment(override val viewModel: AppViewModel) :
 
                 is NetworkResults.Error -> {
 
+                }
+
+                else -> {
+
+                }
+            }
+        }
+    }
+
+    private fun getIndvisualRegister() {
+        viewModel.getIndvisualRegister().observe(requireActivity()) { result ->
+            when (result) {
+                is NetworkResults.Success -> {
+                    toast(result.data.message)
+                    val intent = Intent(requireActivity(), MainActivity::class.java)
+                    startActivity(intent)
+                    requireActivity().finish()
+                }
+
+                is NetworkResults.Error -> {
+                    toast(result.exception.localizedMessage.toString())
                 }
 
                 else -> {

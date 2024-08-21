@@ -29,7 +29,7 @@ class PicturesAdapter(
 
 
             binding.productCard.setOnClickListener {
-                onProductListener.onItemClick(position)
+                onProductListener.onItemClick(position = position , id = 0)
             }
 
         }

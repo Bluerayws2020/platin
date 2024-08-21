@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/product_card"
-    android:layout_width="160dp"
-    android:layout_height="230dp"
+    android:layout_width="150dp"
+    android:layout_height="200dp"
     android:layout_margin="10dp"
     android:clickable="true"
     android:focusable="true"
@@ -65,12 +65,6 @@
                 android:src="@drawable/star"
                 />
 
-            <ImageView
-                android:layout_width="9dp"
-                android:layout_height="9dp"
-                android:layout_marginTop="3dp"
-                android:src="@drawable/star"
-                />
 
 
 
@@ -81,7 +75,7 @@
             android:id="@+id/favourite_click"
             android:layout_width="24dp"
             android:layout_height="22dp"
-            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
             android:button="@drawable/favourite_selector"
             android:scaleX="0.7"
             android:scaleY="0.7"
@@ -115,6 +109,7 @@
             android:text="20 JD"
             android:textAlignment="textEnd"
             android:layout_marginBottom="10dp"
+            android:visibility="gone"
             android:textColor="@color/blue"
             android:textFontWeight="500"
             android:textSize="14sp"

@@ -179,6 +179,7 @@
                 android:textSize="17sp"
                 android:textFontWeight="400" />
 
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/log_out"
                 android:layout_width="match_parent"

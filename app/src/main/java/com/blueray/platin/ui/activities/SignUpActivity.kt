@@ -45,18 +45,7 @@ class SignUpActivity : AppCompatActivity() {
 
 
 
-        //Handle spinner selection for trader country
-//        binding.traderCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-//                val selectedCountryName = parent.getItemAtPosition(position).toString()
-//                val selectedCountryId = countryIdMap[selectedCountryName]
-//                Toast.makeText(this@SignUpActivity, "Selected ID: $selectedCountryId", Toast.LENGTH_SHORT).show()
-//            }
-//
-//            override fun onNothingSelected(parent: AdapterView<*>) {
-//                // Do nothing
-//            }
-//        }
+
     }
 
     // To change the style when individual is selected and set the type
@@ -83,8 +72,7 @@ class SignUpActivity : AppCompatActivity() {
         binding.indevidual.setBackgroundColor(resources.getColor(R.color.blue))
         binding.indevidual.setStrokeColorResource(R.color.gray)
         binding.indevidual.setTextColor(resources.getColor(R.color.gray))
-//        binding.individualForm.visibility = View.GONE
-//        binding.traderForm.visibility = View.VISIBLE
+
     }
 
 
