@@ -60,6 +60,8 @@
                     android:drawableEnd="@drawable/baseline_search_24"
                     android:hint="ابحث عن منتج"
                     android:padding="8dp"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true"
                     android:textColorHint="#818181"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

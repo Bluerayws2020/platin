@@ -1,29 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nestedScrollLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.fragments.CartFragment">
 
-
-    <include
-        android:id="@+id/include_tab"
-        layout="@layout/header_menu" />
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <include
+            android:id="@+id/include_tab"
+            layout="@layout/header_menu" />
+
+        <TextView
+            android:id="@+id/emptyCartTv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|center_horizontal"
+            android:layout_marginTop="200dp"
+            android:fontFamily="@font/israr_syria"
+            android:text="السلة فارغة"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:visibility="gone"
+            android:textStyle="bold" />
 
         <LinearLayout
+            android:id="@+id/cartLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/number1"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_marginTop="50dp"
@@ -31,11 +48,12 @@
                 android:orientation="horizontal"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="100dp"
-                app:strokeColor="@color/orange"
                 app:cardElevation="0dp"
+                app:strokeColor="@color/orange"
                 app:strokeWidth="3dp">
 
                 <TextView
+                    android:id="@+id/number1tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -43,12 +61,14 @@
                     android:textColor="@color/orange"
                     android:textSize="38sp" />
             </com.google.android.material.card.MaterialCardView>
+
             <TextView
+                android:id="@+id/cartTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="مشترياتي"
                 android:layout_marginVertical="10dp"
+                android:text="مشترياتي"
                 android:textColor="@color/orange"
                 android:textSize="23sp" />
 
@@ -63,7 +83,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:spanCount="2"
+                tools:itemCount="5"
                 tools:listitem="@layout/item_cart_horizontal" />
 
             <LinearLayout
@@ -73,60 +93,460 @@
                 android:orientation="horizontal">
 
 
-
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginTop="5dp"
+                    android:layout_weight="1"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="المجموع :"
                         android:layout_marginVertical="10dp"
+                        android:text="المجموع :"
                         android:textColor="@color/black"
                         android:textSize="17sp" />
 
                     <TextView
+                        android:id="@+id/cartTotalPriceTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="240 JD"
                         android:layout_marginHorizontal="10dp"
                         android:layout_marginVertical="10dp"
+                        android:text="240 JD"
                         android:textColor="@color/black"
                         android:textSize="17sp" />
 
                 </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/loginButton"
+                    android:id="@+id/saveCartButton"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="47dp"
+                    android:layout_weight="1"
                     android:backgroundTint="@color/orange"
                     android:text="حفظ و متابعة"
-                    app:cornerRadius="7dp"
                     android:textColor="@color/white"
+                    android:textFontWeight="400"
                     android:textSize="17sp"
-                    android:textFontWeight="400" />
+                    app:cornerRadius="7dp" />
 
             </LinearLayout>
 
-            <include
-                android:id="@+id/coupone_tab"
-                layout="@layout/coupone_form" />
+            <LinearLayout
+                android:id="@+id/couponLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
 
-            <include
-                android:id="@+id/client_info_tab"
-                layout="@layout/client_info_form" />
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/number2"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="100dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/gray900"
+                    app:strokeWidth="3dp">
+
+                    <TextView
+                        android:id="@+id/number2tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="02"
+                        android:textColor="@color/gray900"
+                        android:textSize="38sp" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/couponTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="10dp"
+                    android:text="كوبون الخصم"
+                    android:textColor="@color/gray900"
+                    android:textSize="23sp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="3dp"
+                    app:strokeColor="@color/gray900"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="كوبون الخصم"
+                            android:textColor="@color/black"
+                            android:textFontWeight="400"
+                            android:textSize="17sp" />
+
+                        <EditText
+                            android:id="@+id/couponEt"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/edit_text_bg_gray"
+                            android:drawablePadding="10dp"
+                            android:drawableTint="#BBBBBB"
+                            android:gravity="center"
+                            android:hint="AH123"
+                            android:padding="10dp"
+                            android:textColor="@color/gray"
+                            android:textColorHint="@color/gray600"
+                            android:textSize="17sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginVertical="10dp"
+                                android:text="السعر قبل الخصم :"
+                                android:textColor="@color/black"
+                                android:textSize="17sp" />
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/priceBeforeCoupon"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginHorizontal="10dp"
+                                    android:layout_marginVertical="10dp"
+                                    android:text="240 JD"
+                                    android:textColor="@color/black"
+                                    android:textSize="17sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="2dp"
+                                    android:layout_marginHorizontal="8dp"
+                                    android:layout_marginTop="2dp"
+                                    android:background="@color/red500"
+                                    android:visibility="gone"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/couponPriceLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="السعر بعد الخصم :"
+                                android:textColor="@color/black"
+                                android:textSize="17sp" />
+
+                            <TextView
+                                android:id="@+id/priceAfterCoupon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginHorizontal="10dp"
+                                android:text="175 JD"
+                                android:textColor="@color/black"
+                                android:textSize="17sp" />
+
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/activateCoupon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="47dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:backgroundTint="@color/orange"
+                            android:paddingHorizontal="30dp"
+                            android:text="تفعيل الكوبون"
+                            android:textColor="@color/white"
+                            android:textSize="17sp"
+                            app:cornerRadius="7dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/noCoupon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="47dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:backgroundTint="@color/orange"
+                            android:paddingHorizontal="30dp"
+                            android:text="متابعة بدون كوبون"
+                            android:textColor="@color/white"
+                            android:textSize="17sp"
+                            app:cornerRadius="7dp" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/clintInfoLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/number3"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="100dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/gray900"
+                    app:strokeWidth="3dp">
+
+                    <TextView
+                        android:id="@+id/number3tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="03"
+                        android:textColor="@color/gray900"
+                        android:textSize="38sp" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/clientInfoTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="10dp"
+                    android:text="معلومات العميل"
+                    android:textColor="@color/gray900"
+                    android:textSize="23sp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="40dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="3dp"
+                    app:strokeColor="@color/gray900"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="اسم العميل"
+                            android:textColor="@color/black"
+
+                            android:textSize="17sp" />
+
+                        <EditText
+                            android:id="@+id/name"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/edit_text_bg_gray"
+                            android:clickable="false"
+                            android:drawablePadding="10dp"
+                            android:drawableTint="#BBBBBB"
+                            android:editable="false"
+                            android:focusable="false"
+                            android:hint="ايات حمدان"
+                            android:padding="10dp"
+                            android:textColor="@color/gray"
+                            android:textColorHint="@color/gray600"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="20dp"
+                            android:text="رقم الهاتف"
+                            android:textColor="@color/black"
+                            android:textFontWeight="400"
+                            android:textSize="17sp" />
+
+                        <EditText
+                            android:id="@+id/phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/edit_text_bg_gray"
+                            android:clickable="false"
+                            android:drawablePadding="10dp"
+                            android:drawableTint="#BBBBBB"
+                            android:editable="false"
+                            android:focusable="false"
+                            android:hint="00962 0000 000"
+                            android:padding="10dp"
+                            android:textColor="@color/gray"
+                            android:textColorHint="@color/gray600"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="20dp"
+                            android:text="البريد الإلكتروني"
+                            android:textColor="@color/black"
+                            android:textFontWeight="400"
+                            android:textSize="17sp" />
+
+                        <EditText
+                            android:id="@+id/mail"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/edit_text_bg_gray"
+                            android:clickable="false"
+                            android:drawablePadding="10dp"
+                            android:drawableTint="#BBBBBB"
+                            android:editable="false"
+                            android:focusable="false"
+                            android:hint="loremipsum@yahoo.com"
+                            android:padding="10dp"
+                            android:textColor="@color/gray"
+                            android:textColorHint="@color/gray600"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="20dp"
+                            android:text="الدولة"
+                            android:textColor="@color/black"
+                            android:textFontWeight="400"
+                            android:textSize="17sp" />
+
+                        <EditText
+                            android:id="@+id/country"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/edit_text_bg_gray"
+                            android:clickable="false"
+                            android:drawablePadding="10dp"
+                            android:drawableTint="#BBBBBB"
+                            android:editable="false"
+                            android:focusable="false"
+                            android:hint="loremipsum@yahoo.com"
+                            android:padding="10dp"
+                            android:textColor="@color/gray"
+                            android:textColorHint="@color/gray600"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="20dp"
+                            android:text="المدينة"
+                            android:textColor="@color/black"
+                            android:textFontWeight="400"
+                            android:textSize="17sp" />
+
+                        <EditText
+                            android:id="@+id/city"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/edit_text_bg_gray"
+                            android:clickable="false"
+                            android:drawablePadding="10dp"
+                            android:drawableTint="#BBBBBB"
+                            android:editable="false"
+                            android:focusable="false"
+                            android:hint="loremipsum@yahoo.com"
+                            android:padding="10dp"
+                            android:textColor="@color/gray"
+                            android:textColorHint="@color/gray600"
+                            android:textSize="17sp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/continue_to_payment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="47dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:backgroundTint="@color/orange"
+                            android:paddingHorizontal="30dp"
+                            android:text="حفظ و متابعة"
+                            android:textColor="@color/white"
+                            android:textFontWeight="400"
+                            android:textSize="17sp"
+                            app:cornerRadius="7dp" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
 
         </LinearLayout>
 
 
-
-    </ScrollView>
-</LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

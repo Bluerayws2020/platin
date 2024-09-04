@@ -1,13 +1,19 @@
 package com.blueray.platin.API
 
 import android.util.Log
+import com.blueray.platin.models.AboutUsResponse
+import com.blueray.platin.models.GetBrandsResponse
 import com.blueray.platin.models.GetCategoriesResponse
+import com.blueray.platin.models.GetCertificationsResponse
 import com.blueray.platin.models.GetCitiesResponse
 import com.blueray.platin.models.GetColorsBySizeResponse
 import com.blueray.platin.models.GetCountriesResponse
+import com.blueray.platin.models.GetMyCartResponse
 import com.blueray.platin.models.GetMyProfileResponse
+import com.blueray.platin.models.GetOurCompaniesResponse
 import com.blueray.platin.models.GetProductDetailsResponse
 import com.blueray.platin.models.GetProductsForCategoryResponse
+import com.blueray.platin.models.GetRandomOffersResponse
 import com.blueray.platin.models.GetSubCategoriesResponse
 import com.blueray.platin.models.GetVariationPriceResponse
 import com.blueray.platin.models.IndvisualRegisterResponse
@@ -257,7 +263,8 @@ object NetworkRepository {
         page: Int,
         per_page: Int,
         min: Float?,
-        max: Float?
+        max: Float?,
+        search: String?
     ): NetworkResults<GetProductsForCategoryResponse> {
         return withContext(Dispatchers.IO) {
             try {
@@ -267,7 +274,8 @@ object NetworkRepository {
                     page,
                     per_page,
                     min,
-                    max
+                    max,
+                    search
                 )
                 Log.d("NETWORKTEST", results.status.toString())
                 NetworkResults.Success(results)
@@ -345,14 +353,15 @@ object NetworkRepository {
         size_id: String,
         color_id: String,
         quantity: String,
-        variation_id:String?
+        variation_id: String?
     ): NetworkResults<LogoutResponse> {
         return withContext(Dispatchers.IO) {
             val product_idBody = product_id.toRequestBody("multipart/form-data".toMediaTypeOrNull())
             val size_idBody = size_id.toRequestBody("multipart/form-data".toMediaTypeOrNull())
             val color_idBody = color_id.toRequestBody("multipart/form-data".toMediaTypeOrNull())
             val quantityBody = quantity.toRequestBody("multipart/form-data".toMediaTypeOrNull())
-            val variation_idBody = variation_id?.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            val variation_idBody =
+                variation_id?.toRequestBody("multipart/form-data".toMediaTypeOrNull())
             try {
                 val results = ApiClient.retrofitService.addToCart(
                     lang,
@@ -365,6 +374,188 @@ object NetworkRepository {
                 )
                 NetworkResults.Success(results)
             } catch (e: Exception) {
+                NetworkResults.Error(e)
+            }
+        }
+    }
+
+    suspend fun getMyCart(
+        lang: String,
+        auth: String
+    ): NetworkResults<GetMyCartResponse> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val result = ApiClient.retrofitService.getMyCart(
+                    lang,
+                    auth
+                )
+                NetworkResults.Success(result)
+            } catch (e: Exception) {
+                NetworkResults.Error(e)
+            }
+        }
+    }
+
+    suspend fun checkCoupon(
+        lang: String,
+        auth: String,
+        coupon_code: String
+    ): NetworkResults<LogoutResponse> {
+        val coupon_codeBody = coupon_code.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        return withContext(Dispatchers.IO) {
+            try {
+                val results = ApiClient.retrofitService.checkCoupon(
+                    lang,
+                    auth,
+                    coupon_codeBody
+                )
+                NetworkResults.Success(results)
+            } catch (e: Exception) {
+                NetworkResults.Error(e)
+            }
+        }
+    }
+
+    suspend fun checkout(
+        lang: String,
+        auth: String,
+        coupon_code: String
+    ): NetworkResults<LogoutResponse> {
+        val coupon_codeBody = coupon_code.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        return withContext(Dispatchers.IO) {
+            try {
+                val results = ApiClient.retrofitService.checkout(
+                    lang,
+                    auth,
+                    coupon_codeBody
+                )
+                NetworkResults.Success(results)
+            } catch (e: Exception) {
+                NetworkResults.Error(e)
+            }
+        }
+    }
+
+    suspend fun deleteFromCart(
+        lang: String,
+        auth: String,
+        cart_temp_id: String
+    ): NetworkResults<LogoutResponse> {
+        val cart_temp_idBody = cart_temp_id.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        return withContext(Dispatchers.IO) {
+            try {
+                val results = ApiClient.retrofitService.deleteFromCart(
+                    lang,
+                    auth,
+                    cart_temp_idBody
+                )
+                NetworkResults.Success(results)
+            } catch (e: Exception) {
+                NetworkResults.Error(e)
+            }
+        }
+    }
+
+    suspend fun updateCartQuantity(
+        lang: String,
+        auth: String,
+        cart_temp_id: String,
+        quantity: String
+    ): NetworkResults<LogoutResponse> {
+        val cart_temp_idBody = cart_temp_id.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        val quantityBody = quantity.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        return withContext(Dispatchers.IO) {
+            try {
+                val results = ApiClient.retrofitService.updateCartQuantity(
+                    lang,
+                    auth,
+                    cart_temp_idBody,
+                    quantityBody
+                )
+                NetworkResults.Success(results)
+            } catch (e: Exception) {
+                NetworkResults.Error(e)
+            }
+        }
+    }
+
+    suspend fun rateProduct(
+        lang: String,
+        auth: String,
+        product_id: String,
+        review_value: String
+    ): NetworkResults<LogoutResponse> {
+
+        val productIdBody = product_id.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        val reviewValueBody = review_value.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        return withContext(Dispatchers.IO) {
+            try {
+                val result = ApiClient.retrofitService.rateProduct(
+                    lang,
+                    auth,
+                    productIdBody,
+                    reviewValueBody
+                )
+                NetworkResults.Success(result)
+            } catch (e: Exception) {
+                NetworkResults.Error(e)
+            }
+        }
+    }
+
+    suspend fun aboutUs(lang: String): NetworkResults<AboutUsResponse> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val results = ApiClient.retrofitService.getAboutUs(lang)
+                NetworkResults.Success(results)
+            } catch (e: Exception) {
+                NetworkResults.Error(e)
+            }
+        }
+    }
+
+    suspend fun getCertifications(lang: String): NetworkResults<GetCertificationsResponse> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val results = ApiClient.retrofitService.getCertifications(lang)
+                NetworkResults.Success(results)
+            } catch (e: Exception) {
+                NetworkResults.Error(e)
+            }
+        }
+    }
+
+    suspend fun getOurCompanies(lang: String): NetworkResults<GetOurCompaniesResponse> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val results = ApiClient.retrofitService.getOurCompanies(lang)
+                NetworkResults.Success(results)
+            } catch (e: Exception) {
+                NetworkResults.Error(e)
+            }
+        }
+    }
+
+    suspend fun getRandomOffers(
+        lang: String,
+        auth: String
+    ): NetworkResults<GetRandomOffersResponse> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val results = ApiClient.retrofitService.getRandomOffers(lang, auth)
+                NetworkResults.Success(results)
+            } catch (e: Exception) {
+                NetworkResults.Error(e)
+            }
+        }
+    }
+
+    suspend fun getBrands(lang: String):NetworkResults<GetBrandsResponse>{
+        return withContext(Dispatchers.IO){
+            try {
+                val results = ApiClient.retrofitService.getBrands(lang)
+                NetworkResults.Success(results)
+            }catch (e:Exception){
                 NetworkResults.Error(e)
             }
         }

@@ -20,6 +20,7 @@ import com.blueray.platin.adapters.ThumbnailAdapter
 import com.blueray.platin.databinding.FragmentProductDetailsBinding
 import com.blueray.platin.models.Color
 import com.blueray.platin.models.NetworkResults
+import com.blueray.platin.models.Product
 import com.blueray.platin.models.Size
 import com.blueray.platin.ui.activities.MenuActivity
 import com.blueray.platin.viewModels.AppViewModel
@@ -30,6 +31,7 @@ class ProductDetailsFragment : BaseFragment<FragmentProductDetailsBinding, AppVi
     override val viewModel by viewModels<AppViewModel>()
     private var navController: NavController? = null
     private lateinit var pid: String
+    private var category_id: Int = 0
     private lateinit var images: MutableList<String>
     private var sizeId = ""
     private var colorId = ""
@@ -46,6 +48,7 @@ class ProductDetailsFragment : BaseFragment<FragmentProductDetailsBinding, AppVi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         pid = arguments?.getString("pid").toString()
+        category_id = arguments?.getInt("category_id")!!
         navController = Navigation.findNavController(view)
         binding?.includeTab?.imageView2?.setBackgroundDrawable(resources.getDrawable(R.drawable.head_pic))
         binding?.includeTab?.title?.text = "حماية الرأس"
@@ -60,22 +63,31 @@ class ProductDetailsFragment : BaseFragment<FragmentProductDetailsBinding, AppVi
         binding?.addToCartButton?.setOnClickListener {
             addToCartOptions()
         }
+        binding?.rateButton?.setOnClickListener {
+            val rating = binding?.ratingBar?.rating?.toInt()
+            viewModel.retrieveRateProduct(pid, rating.toString())
+        }
 
         viewModel.retrieveProductDetails(pid)
+        viewModel.retrieveRandomOffers()
+        viewModel.retrieveProductsForCategory(category_id, 1, 8, null, null, null)
         getProductsDetails()
         images = mutableListOf()
         setupQuantityButtons()
         // Setup adapters for existing recycler views
-        setupProductRecyclerView()
-        setupOffersRecyclerView()
+
+
 
         getColorsBySize()
         getVariationPrice()
         addToCart()
+        getRateProduct()
+        getRandomOffers()
+        getProducts()
     }
 
-    private fun setupProductRecyclerView() {
-        val productAdapter = ProductsAdapter(mutableListOf(), object : OnProductListener {
+    private fun setupProductRecyclerView(list: MutableList<Product>) {
+        val productAdapter = ProductsAdapter(list, object : OnProductListener {
             override fun addToCart(pid: Int, quantity: String) {}
             override fun addToFavourite(pid: Int) {}
             override fun removeFromFavourite(favId: Int) {}
@@ -87,12 +99,15 @@ class ProductDetailsFragment : BaseFragment<FragmentProductDetailsBinding, AppVi
         }
     }
 
-    private fun setupOffersRecyclerView() {
-        val offersAdapter = OffersAdapter(object : OnProductListener {
+    private fun setupOffersRecyclerView(list: List<Product>) {
+        val offersAdapter = OffersAdapter(list, object : OnProductListener {
             override fun addToCart(pid: Int, quantity: String) {}
             override fun addToFavourite(pid: Int) {}
             override fun removeFromFavourite(favId: Int) {}
-            override fun showDetails(position: Int) {}
+            override fun showDetails(pid: Int) {
+                viewModel.retrieveProductDetails(pid.toString())
+                images = mutableListOf()
+            }
         })
         binding?.recycler2?.apply {
             setHasFixedSize(true)
@@ -348,6 +363,60 @@ class ProductDetailsFragment : BaseFragment<FragmentProductDetailsBinding, AppVi
                 }
 
                 is NetworkResults.NoInternet -> {
+
+                }
+            }
+        }
+    }
+
+    private fun getRateProduct() {
+        viewModel.getRateProduct().observe(requireActivity()) { result ->
+            when (result) {
+                is NetworkResults.Success -> {
+                    toast(result.data.message)
+                }
+
+                is NetworkResults.Error -> {
+                    toast(result.exception.localizedMessage.toString())
+                }
+
+                else -> {
+
+                }
+            }
+        }
+    }
+
+    private fun getRandomOffers() {
+        viewModel.getRandomOffers().observe(requireActivity()) { result ->
+            when (result) {
+                is NetworkResults.Success -> {
+                    setupOffersRecyclerView(result.data.data)
+                }
+
+                is NetworkResults.Error -> {
+                    toast(result.exception.localizedMessage.toString())
+                }
+
+                else -> {
+
+                }
+            }
+        }
+    }
+
+    private fun getProducts() {
+        viewModel.getProductsForCategory().observe(requireActivity()) { result ->
+            when (result) {
+                is NetworkResults.Success -> {
+                    setupProductRecyclerView(result.data.data.products.toMutableList())
+                }
+
+                is NetworkResults.Error -> {
+                    toast(result.exception.localizedMessage.toString())
+                }
+
+                else -> {
 
                 }
             }

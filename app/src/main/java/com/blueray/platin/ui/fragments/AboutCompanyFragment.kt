@@ -1,7 +1,6 @@
 package com.blueray.platin.ui.fragments
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.blueray.platin.R
 import com.blueray.platin.databinding.FragmentAboutCompanyBinding
-import com.blueray.platin.databinding.FragmentProductDetailsBinding
+import com.blueray.platin.models.NetworkResults
 import com.blueray.platin.ui.activities.MenuActivity
 import com.blueray.platin.viewModels.AppViewModel
 
@@ -40,6 +38,33 @@ class AboutCompanyFragment : BaseFragment<FragmentAboutCompanyBinding, AppViewMo
             startActivity(intent)
         }
 
+        viewModel.retrieveAboutUs()
+        getAboutUs()
 
+
+    }
+
+    private fun getAboutUs() {
+        viewModel.getAboutUs().observe(requireActivity()) { result ->
+            when (result) {
+                is NetworkResults.Success -> {
+                    binding?.titleTv?.text = result.data.data.aboutTitle
+                    binding?.aboutDescriptionTv?.text = result.data.data.aboutDescription
+                    binding?.ourHistoryTitle?.text = result.data.data.ourHistoryTitle
+                    binding?.ourHistoryDescription?.text = result.data.data.ourHistoryDescription
+                    binding?.distinguishUsTitle?.text = result.data.data.distinguishUsTitle
+                    binding?.distinguishUsDescription?.text =
+                        result.data.data.distinguishUsDescription
+                }
+
+                is NetworkResults.Error -> {
+
+                }
+
+                else -> {
+
+                }
+            }
+        }
     }
 }

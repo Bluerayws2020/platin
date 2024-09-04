@@ -45,6 +45,10 @@
         <activity
             android:name=".ui.activities.MainActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".ui.activities.OnlinePaymentActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

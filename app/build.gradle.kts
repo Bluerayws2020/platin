@@ -40,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.aar"))))
 
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
@@ -81,7 +82,11 @@ dependencies {
     implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
 
     implementation ("com.toptoche.searchablespinner:searchablespinnerlibrary:1.3.1")
-
+    //HyperPay
+    implementation ("androidx.browser:browser:1.8.0")
+    implementation ("androidx.webkit:webkit:1.11.0")
+    implementation ("com.afterpay:afterpay-android:4.4.0")
+    implementation ("com.android.volley:volley:1.2.1")
     debugImplementation("com.github.chuckerteam.chucker:library:3.5.2")
     releaseImplementation("com.github.chuckerteam.chucker:library-no-op:3.5.2")
 

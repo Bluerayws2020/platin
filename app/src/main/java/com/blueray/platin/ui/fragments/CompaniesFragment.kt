@@ -15,6 +15,7 @@ import com.blueray.platin.adapters.PicturesAdapter
 import com.blueray.platin.adapters.onCategoryClick
 import com.blueray.platin.databinding.FragmentCompaniesBinding
 import com.blueray.platin.databinding.FragmentPicturesBinding
+import com.blueray.platin.models.NetworkResults
 import com.blueray.platin.ui.activities.MenuActivity
 import com.blueray.platin.viewModels.AppViewModel
 
@@ -42,16 +43,29 @@ class CompaniesFragment : BaseFragment<FragmentCompaniesBinding, AppViewModel>()
             val intent = Intent(activity, MenuActivity::class.java)
             startActivity(intent)
         }
+        viewModel.retrieveOurCompanies()
+        getOurCompanies()
 
 
-        val companiesAdapter = CompaniesAdapter(object : onCategoryClick {
-            override fun onItemClick(id: Int, position: Int) {
-                navController?.navigate(R.id.action_homeFragment_to_subCategoriesFragment)
+    }
+
+    private fun getOurCompanies() {
+        viewModel.getOurCompanies().observe(requireActivity()) { result ->
+            when (result) {
+                is NetworkResults.Success -> {
+                    val companiesAdapter = CompaniesAdapter(result.data.data)
+                    binding?.recycler?.setHasFixedSize(true)
+                    binding?.recycler?.adapter = companiesAdapter
+                }
+
+                is NetworkResults.Error -> {
+
+                }
+
+                else -> {
+
+                }
             }
-        })
-        binding?.recycler?.setHasFixedSize(true)
-        binding?.recycler?.adapter = companiesAdapter
-
-
+        }
     }
 }

@@ -261,3 +261,119 @@ data class GetVariationPriceData(
     val id: Int,
     val price: String
 )
+
+data class GetMyCartResponse(
+    val `data`: GetMyCartData,
+    val status: Int
+)
+
+data class GetMyCartData(
+    val customer_cart: List<CustomerCart>,
+    val endTotal: Double,
+    val numberOfProducts: Int,
+    val subTotal: Double
+)
+
+data class CustomerCart(
+    val color: String,
+    val color_id: Int,
+    val customer_id: Int,
+    val id: Int,
+    val itemEndTotal: Double,
+    val itemSubTotal: Double,
+    val product_id: Int,
+    val product_image: String,
+    val product_name: String,
+    val quantity: Int,
+    val size: String,
+    val size_id: Int,
+    val variation: Variation,
+    val variation_id: Int
+)
+
+data class Variation(
+    val box_cost: String,
+    val box_on_sale_price: String,
+    val box_on_sale_price_status: String,
+    val box_quantity: Int,
+    val box_sale_price: String,
+    val color_id: Int,
+    val cost_price: String,
+    val created_at: String,
+    val deleted_at: Any,
+    val id: Int,
+    val on_sale_price: String,
+    val on_sale_price_status: String,
+    val product_id: Int,
+    val quantity: Int,
+    val sale_price: String,
+    val size_id: Int,
+    val status: String,
+    val updated_at: String
+)
+
+data class AboutUsResponse(
+    val `data`: AboutUsData,
+    val status: Int
+)
+
+data class AboutUsData(
+    val aboutDescription: String,
+    val aboutTitle: String,
+    val distinguishUsDescription: String,
+    val distinguishUsTitle: String,
+    val id: Int,
+    val ourHistoryDescription: String,
+    val ourHistoryTitle: String
+)
+
+data class GetCertificationsResponse(
+    val `data`: List<GetCertificationsData>,
+    val status: Int
+)
+
+data class GetCertificationsData(
+    val id: Int,
+    val image: String,
+    val name: String,
+    val pdf_file: String,
+    val status: String
+)
+
+data class GetOurCompaniesResponse(
+    val `data`: List<GetOurCompaniesData>,
+    val status: Int
+)
+
+data class GetOurCompaniesData(
+    val description: String,
+    val id: Int,
+    val image: String,
+    val name: String,
+    val status: String,
+    val url: String
+)
+
+data class GetOffersResponse(
+    val `data`: List<Product>,
+    val pagination: Pagination,
+    val status: Int
+)
+
+data class GetRandomOffersResponse(
+    val `data`: List<Product>,
+    val status: Int
+)
+
+
+data class GetBrandsResponse(
+    val `data`: List<BrandsData>,
+    val status: Int
+)
+
+data class BrandsData(
+    val id: Int,
+    val image: String,
+    val name: String,
+    val status: String
+)

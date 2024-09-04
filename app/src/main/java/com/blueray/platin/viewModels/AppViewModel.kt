@@ -6,13 +6,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.blueray.platin.API.NetworkRepository
 import com.blueray.platin.helpers.HelperUtils
+import com.blueray.platin.models.AboutUsResponse
+import com.blueray.platin.models.GetBrandsResponse
 import com.blueray.platin.models.GetCategoriesResponse
+import com.blueray.platin.models.GetCertificationsResponse
 import com.blueray.platin.models.GetCitiesResponse
 import com.blueray.platin.models.GetColorsBySizeResponse
 import com.blueray.platin.models.GetCountriesResponse
+import com.blueray.platin.models.GetMyCartResponse
 import com.blueray.platin.models.GetMyProfileResponse
+import com.blueray.platin.models.GetOurCompaniesResponse
 import com.blueray.platin.models.GetProductDetailsResponse
 import com.blueray.platin.models.GetProductsForCategoryResponse
+import com.blueray.platin.models.GetRandomOffersResponse
 import com.blueray.platin.models.GetSubCategoriesResponse
 import com.blueray.platin.models.GetVariationPriceResponse
 import com.blueray.platin.models.IndvisualRegisterResponse
@@ -50,6 +56,18 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     private val getVariationPriceLiveData =
         MutableLiveData<NetworkResults<GetVariationPriceResponse>>()
     private val addToCartLiveData = MutableLiveData<NetworkResults<LogoutResponse>>()
+    private val getMyCartLiveData = MutableLiveData<NetworkResults<GetMyCartResponse>>()
+    private val checkCouponLiveData = MutableLiveData<NetworkResults<LogoutResponse>>()
+    private val checkoutLiveData = MutableLiveData<NetworkResults<LogoutResponse>>()
+    private val deleteFromCartLiveData = MutableLiveData<NetworkResults<LogoutResponse>>()
+    private val updateCartQuantityLiveData = MutableLiveData<NetworkResults<LogoutResponse>>()
+    private val rateProductLiveData = MutableLiveData<NetworkResults<LogoutResponse>>()
+    private val aboutUsLiveData = MutableLiveData<NetworkResults<AboutUsResponse>>()
+    private val getCertificationsLiveData =
+        MutableLiveData<NetworkResults<GetCertificationsResponse>>()
+    private val getOurCompaniesLiveData = MutableLiveData<NetworkResults<GetOurCompaniesResponse>>()
+    private val getRandomOffersLiveData = MutableLiveData<NetworkResults<GetRandomOffersResponse>>()
+    private val getBrandsLiveData = MutableLiveData<NetworkResults<GetBrandsResponse>>()
 
     //****************** getCountries *************************//
     fun retrieveCountries() {
@@ -232,7 +250,8 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         page: Int,
         per_page: Int,
         min: Float?,
-        max: Float?
+        max: Float?,
+        search: String?
     ) {
         viewModelScope.launch {
             getProductsForCategoryLiveData.postValue(
@@ -242,7 +261,8 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
                     page,
                     per_page,
                     min,
-                    max
+                    max,
+                    search
                 )
             )
         }
@@ -327,4 +347,149 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getAddToCart() = addToCartLiveData
+
+    fun retrieveMyCart() {
+        viewModelScope.launch {
+            val auth = "Bearer $token"
+            getMyCartLiveData.postValue(
+                repo.getMyCart(
+                    lang,
+                    auth
+                )
+            )
+        }
+    }
+
+    fun getMyCart() = getMyCartLiveData
+
+    fun retrieveCheckCoupon(couponCode: String) {
+        viewModelScope.launch {
+            val auth = "Bearer $token"
+            checkCouponLiveData.postValue(
+                repo.checkCoupon(
+                    lang,
+                    auth,
+                    couponCode
+                )
+            )
+        }
+    }
+
+    fun getCheckCoupon() = checkCouponLiveData
+
+    fun retrieveCheckout(couponCode: String) {
+        viewModelScope.launch {
+            val auth = "Bearer $token"
+            checkoutLiveData.postValue(
+                repo.checkout(
+                    lang,
+                    auth,
+                    couponCode
+                )
+            )
+        }
+    }
+
+    fun getCheckout() = checkoutLiveData
+
+    fun retrieveDeleteFromCart(cart_temp_id: String) {
+        viewModelScope.launch {
+            val auth = "Bearer $token"
+            deleteFromCartLiveData.postValue(
+                repo.deleteFromCart(
+                    lang,
+                    auth,
+                    cart_temp_id
+                )
+            )
+        }
+    }
+
+    fun getDeleteFromCart() = deleteFromCartLiveData
+
+    fun retrieveUpdateCartQuantity(cart_temp_id: String, quantity: String) {
+        viewModelScope.launch {
+            val auth = "Bearer $token"
+            updateCartQuantityLiveData.postValue(
+                repo.updateCartQuantity(
+                    lang,
+                    auth,
+                    cart_temp_id,
+                    quantity
+                )
+            )
+        }
+    }
+
+    fun getUpdateCartQuantity() = updateCartQuantityLiveData
+
+    fun retrieveRateProduct(product_id: String, review_value: String) {
+        viewModelScope.launch {
+            val auth = "Bearer $token"
+            rateProductLiveData.postValue(
+                repo.rateProduct(
+                    lang,
+                    auth,
+                    product_id,
+                    review_value
+                )
+            )
+        }
+    }
+
+    fun getRateProduct() = rateProductLiveData
+
+    fun retrieveAboutUs() {
+        viewModelScope.launch {
+            aboutUsLiveData.postValue(
+                repo.aboutUs(lang)
+            )
+        }
+    }
+
+    fun getAboutUs() = aboutUsLiveData
+
+    fun retrieveCertifications() {
+        viewModelScope.launch {
+            getCertificationsLiveData.postValue(
+                repo.getCertifications(lang)
+            )
+        }
+    }
+
+    fun getCertifications() = getCertificationsLiveData
+
+
+    fun retrieveOurCompanies() {
+        viewModelScope.launch {
+            getOurCompaniesLiveData.postValue(
+                repo.getOurCompanies(lang)
+            )
+        }
+    }
+
+    fun getOurCompanies() = getOurCompaniesLiveData
+
+    fun retrieveRandomOffers() {
+        val auth = "Bearer $token"
+        viewModelScope.launch {
+            getRandomOffersLiveData.postValue(
+                repo.getRandomOffers(
+                    lang, auth
+                )
+            )
+        }
+    }
+
+    fun getRandomOffers() = getRandomOffersLiveData
+
+    fun retrieveBrands() {
+        viewModelScope.launch {
+            getBrandsLiveData.postValue(
+                repo.getBrands(lang)
+            )
+        }
+    }
+
+    fun getBrands() = getBrandsLiveData
 }

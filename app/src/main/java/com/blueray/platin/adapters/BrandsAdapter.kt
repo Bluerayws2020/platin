@@ -2,17 +2,14 @@ package com.blueray.platin.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.blueray.platin.databinding.ItemBrandBinding
-import com.blueray.platin.databinding.ItemPicturBinding
-import com.blueray.platin.databinding.ItemProductBinding
-import com.blueray.platin.databinding.ItemProductHorizontalBinding
+import com.blueray.platin.models.BrandsData
+import com.bumptech.glide.Glide
 
 
 class BrandsAdapter(
-    //private val productsList: List<ProductDetails>,
+    private val list: List<BrandsData>,
     private val onProductListener: onCategoryClick
 ) :
     RecyclerView.Adapter<BrandsAdapter.ProductsViewHolder>() {
@@ -26,15 +23,17 @@ class BrandsAdapter(
     }
 
     override fun getItemCount(): Int {
-        return 12
+        return list.size
     }
 
     override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
+        val data = list[position]
         holder.apply {
 
+            Glide.with(itemView.context).load(data.image).into(binding.itemPic)
 
             binding.productCard.setOnClickListener {
-                onProductListener.onItemClick(position = position , id = 0)
+                onProductListener.onItemClick(position = position, id = data.id)
             }
 
 

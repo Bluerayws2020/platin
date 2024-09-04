@@ -8,11 +8,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.blueray.platin.R
 import com.blueray.platin.adapters.OnProductListener
@@ -29,6 +31,7 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
     private var navController: NavController? = null
     private var category_id: Int? = null
     private var categoryName: String? = null
+    private var selectedSubCategoryId: Int? = null // New field to track selected sub-category
     private val sliderHandler = Handler(Looper.getMainLooper())
     private var sliderRunnable: Runnable? = null
     private var currentPage = 1
@@ -50,6 +53,7 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
             override fun showDetails(pid: Int) {
                 val bundle = Bundle().apply {
                     putString("pid", pid.toString())
+                    putInt("category_id", category_id!!)
                 }
                 navController?.navigate(
                     R.id.action_subCategoryDetailsFragment_to_productDetailsFragment,
@@ -82,8 +86,9 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
         }
         category_id = arguments?.getInt("category_id")
 
-        setupRecyclerView()
-        getProducts()
+        getProducts()  // Initial call without price parameters
+
+        // Set up slider listener with delay
         binding?.priceSlider?.addOnChangeListener { slider, value, fromUser ->
             sliderRunnable?.let { sliderHandler.removeCallbacks(it) } // Remove any existing callbacks
             sliderRunnable = Runnable {
@@ -91,52 +96,83 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
                 val minPrice = slider.valueFrom
                 val maxPrice = slider.value
                 Log.d("SliderValue", "Slider value changed to $value")
-//                toast(value.toString())
+
                 currentPage = 1 // Reset the page number
                 productsAdapter.clearProducts() // Clear existing products in adapter
                 getProducts(minPrice, maxPrice) // Fetch new products with price filter
             }
             sliderHandler.postDelayed(sliderRunnable!!, 500) // Delay of 500ms
         }
+
+        binding?.searchView?.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                // Get the search text from EditText
+                val searchText = v.text.toString()
+
+                // Use the search text with the API call
+                if (searchText.isNotEmpty()) {
+                    currentPage = 1 // Reset page for new search
+                    productsAdapter.clearProducts() // Clear existing products
+                    getProducts(searchText = searchText)
+                }
+                true
+            } else {
+                false
+            }
+        }
     }
-
-
 
     private fun setupRecyclerView() {
         binding?.recyclerItem?.apply {
+            Log.d("WaleedKHA", productsAdapter.itemCount.toString())
             setHasFixedSize(true)
+            layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = productsAdapter
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
-                    val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                    val layoutManager = recyclerView.layoutManager as GridLayoutManager
                     val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
                     if (lastVisibleItemPosition == productsAdapter.itemCount - 1 && currentPage < lastPage) {
                         currentPage++
-                        getProducts()
+                        getProducts()  // Paginate without price filter
                     }
                 }
             })
         }
     }
 
-    private fun getProducts(minPrice: Float? = null, maxPrice: Float? = null) {
+    private fun getProducts(
+        minPrice: Float? = null,
+        maxPrice: Float? = null,
+        searchText: String? = null
+    ) {
         if (currentPage > lastPage) return  // Prevent further API calls when the last page is reached
 
-        // Pass minPrice and maxPrice if they are not null
-        viewModel.retrieveProductsForCategory(category_id!!, currentPage, 8, minPrice, maxPrice)
-        viewModel.getProductsForCategory().observe(requireActivity()) { result ->
+        // Modify the API call to include search text if available
+        viewModel.retrieveProductsForCategory(
+            category_id!!,
+            currentPage,
+            8,
+            minPrice,
+            maxPrice,
+            searchText
+        )
+
+        // Observe LiveData with LifecycleOwner
+        viewModel.getProductsForCategory().observe(viewLifecycleOwner) { result ->
             when (result) {
                 is NetworkResults.Success -> {
                     if (result.data.status == 200) {
                         currentPage = result.data.pagination.current_page
                         lastPage = result.data.pagination.last_page
-
+                        setupRecyclerView()
                         val newProducts = result.data.data.products
                         val existingProducts = productsAdapter.getProducts()
                         val filteredProducts = newProducts.filter { newProduct ->
                             existingProducts.none { existingProduct -> existingProduct.id == newProduct.id }
                         }
+
                         productsAdapter.addProducts(filteredProducts)
                         if (result.data.data.sub_categories.isNullOrEmpty()) {
                             binding?.order?.visibility = View.GONE
@@ -164,7 +200,9 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
 
 
     private fun setupSpinner(subCategories: List<SubCategory>) {
-        val subCategoryNames = subCategories.map { it.name }
+        // Add a placeholder item for "Select Sub-Category"
+        val subCategoryNames = mutableListOf("اختر التصنيف الفرعي")
+        subCategoryNames.addAll(subCategories.map { it.name })
         val adapter = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_spinner_item,
@@ -172,7 +210,27 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding?.spinner?.adapter = adapter
+
+        binding?.spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (position > 0) {
+                    category_id = subCategories[position - 1].id
+                    currentPage = 1
+                    productsAdapter.clearProducts()
+                    getProducts()
+                } else {
+                    selectedSubCategoryId = null
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Do nothing
+            }
+        }
     }
 }
-
-

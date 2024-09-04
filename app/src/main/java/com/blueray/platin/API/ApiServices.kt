@@ -1,13 +1,19 @@
 package com.blueray.platin.API
 
 
+import com.blueray.platin.models.AboutUsResponse
+import com.blueray.platin.models.GetBrandsResponse
 import com.blueray.platin.models.GetCategoriesResponse
+import com.blueray.platin.models.GetCertificationsResponse
 import com.blueray.platin.models.GetCitiesResponse
 import com.blueray.platin.models.GetColorsBySizeResponse
 import com.blueray.platin.models.GetCountriesResponse
+import com.blueray.platin.models.GetMyCartResponse
 import com.blueray.platin.models.GetMyProfileResponse
+import com.blueray.platin.models.GetOurCompaniesResponse
 import com.blueray.platin.models.GetProductDetailsResponse
 import com.blueray.platin.models.GetProductsForCategoryResponse
+import com.blueray.platin.models.GetRandomOffersResponse
 import com.blueray.platin.models.GetSubCategoriesResponse
 import com.blueray.platin.models.GetVariationPriceResponse
 import com.blueray.platin.models.IndvisualRegisterResponse
@@ -119,7 +125,8 @@ interface ApiServices {
         @Query("page") page: Int,
         @Query("per_page") per_page: Int,
         @Query("min") min: Float?,
-        @Query("max") max: Float?
+        @Query("max") max: Float?,
+        @Query("search") search: String?
     ): GetProductsForCategoryResponse
 
     @GET("getProductDetails")
@@ -157,4 +164,78 @@ interface ApiServices {
         @Part("quantity") quantity: RequestBody,
         @Part("variation_id") variation_id: RequestBody?,
     ): LogoutResponse
+
+    @POST("customer/getMyCart")
+    suspend fun getMyCart(
+        @Header("lang") lang: String,
+        @Header("Authorization") Authorization: String,
+    ): GetMyCartResponse
+
+    @Multipart
+    @POST("customer/checkCoupon")
+    suspend fun checkCoupon(
+        @Header("lang") lang: String,
+        @Header("Authorization") Authorization: String,
+        @Part("coupon_code") coupon_code: RequestBody
+    ): LogoutResponse
+
+    @Multipart
+    @POST("customer/checkout")
+    suspend fun checkout(
+        @Header("lang") lang: String,
+        @Header("Authorization") Authorization: String,
+        @Part("coupon_code") coupon_code: RequestBody
+    ): LogoutResponse
+
+    @Multipart
+    @POST("customer/deleteFromCart")
+    suspend fun deleteFromCart(
+        @Header("lang") lang: String,
+        @Header("Authorization") Authorization: String,
+        @Part("cart_temp_id") cart_temp_id: RequestBody
+    ): LogoutResponse
+
+    @Multipart
+    @POST("customer/updateCartQuantity")
+    suspend fun updateCartQuantity(
+        @Header("lang") lang: String,
+        @Header("Authorization") Authorization: String,
+        @Part("cart_temp_id") cart_temp_id: RequestBody,
+        @Part("quantity") quantity: RequestBody,
+    ): LogoutResponse
+
+    @Multipart
+    @POST("customer/rateThisProduct")
+    suspend fun rateProduct(
+        @Header("lang") lang: String,
+        @Header("Authorization") Authorization: String,
+        @Part("product_id") product_id: RequestBody,
+        @Part("review_value") review_value: RequestBody,
+    ): LogoutResponse
+
+    @GET("getAboutUs")
+    suspend fun getAboutUs(
+        @Header("lang") lang: String
+    ): AboutUsResponse
+
+    @GET("getCertifications")
+    suspend fun getCertifications(
+        @Header("lang") lang: String
+    ): GetCertificationsResponse
+
+    @GET("getOurCompanies")
+    suspend fun getOurCompanies(
+        @Header("lang") lang: String
+    ): GetOurCompaniesResponse
+
+    @GET("getRandomOffers")
+    suspend fun getRandomOffers(
+        @Header("lang") lang: String,
+        @Header("Authorization") Authorization: String,
+    ): GetRandomOffersResponse
+
+    @GET("getBrands")
+    suspend fun getBrands(
+        @Header("lang") lang: String,
+    ): GetBrandsResponse
 }
